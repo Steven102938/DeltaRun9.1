@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
-class UserLoginViewController:UIViewController, UITextFieldDelegate {
+class UserLoginViewController:UIViewController {
     
     @IBOutlet weak var LoginView: UIView!
     @IBOutlet weak var UsernameField: UITextField!

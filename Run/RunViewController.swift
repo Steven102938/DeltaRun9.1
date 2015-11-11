@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 
-class RunViewController: UIViewController, UITextFieldDelegate {
+class RunViewController: UIViewController {
     
     
     

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class UserSignUpViewController: UIViewController, UITextFieldDelegate {
+class UserSignUpViewController: UIViewController {
     var returnBool:Bool?
 
     
@@ -38,19 +38,31 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate {
             LastNameTextField.becomeFirstResponder()
         }
         else if TextField == LastNameTextField{
-            returnBool = false
+            returnBool = true
             LastNameTextField.resignFirstResponder()
             EmailTextField.becomeFirstResponder()
         }
         else if TextField == EmailTextField{
-            returnBool = false
+            returnBool = true
             
             EmailTextField.resignFirstResponder()
             UsernameTextField.becomeFirstResponder()
         }
         else if TextField == UsernameTextField{
+            returnBool = true
+
             UsernameTextField.resignFirstResponder()
             PasswordTextField.becomeFirstResponder()
+        }
+        else if TextField == PasswordTextField{
+            returnBool = true
+
+            PasswordTextField.resignFirstResponder()
+            dateTextField.becomeFirstResponder()
+        }
+        else if TextField == dateTextField{
+            dateTextField.resignFirstResponder()
+
         }
         return true
     }
@@ -103,10 +115,51 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate {
             print("d")
         }
     }
+  
     override func viewDidLoad() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        self.FirstNameTextField.delegate = self
+        self.LastNameTextField.delegate = self
+        self.EmailTextField.delegate = self
+        self.UsernameTextField.delegate = self
+        self.PasswordTextField.delegate = self
+        self.dateTextField.delegate = self
+        addToolBar(FirstNameTextField)
+        addToolBar(LastNameTextField)
+        addToolBar(EmailTextField)
+        addToolBar(UsernameTextField)
+        addToolBar(PasswordTextField)
+        addToolBar(dateTextField)
+
+
+        
+
     }
 
   
+}
+extension UIViewController: UITextFieldDelegate{
+    func addToolBar(textField: UITextField){
+        var toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.Default
+        toolBar.translucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "donePressed")
+        var leftPressed = UIBarButtonItem(title: "〈", style: UIBarButtonItemStyle.Plain, target: self, action: "leftPressed")
+        var rightPressed = UIBarButtonItem(title: "〉", style: UIBarButtonItemStyle.Plain, target: self, action: "rightPressed")
+        var spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        toolBar.setItems([leftPressed, rightPressed, spaceButton, doneButton], animated: false)
+        toolBar.userInteractionEnabled = true
+        toolBar.sizeToFit()
+        
+        textField.delegate = self
+        textField.inputAccessoryView = toolBar
+    }
+    func donePressed(){
+        view.endEditing(true)
+    }
+    func cancelPressed(){
+        view.endEditing(true) // or do something
+    }
 }
