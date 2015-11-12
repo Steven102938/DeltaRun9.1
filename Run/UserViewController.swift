@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 class UserViewController: UIViewController{
-    var directionsURLString = NSURL(string: "http://192.168.1.107/database.php/")
+    var directionsURLString = NSURL(string: "http://192.168.1.111/database.php/")
     var users = [String:String]()
     
     @IBOutlet weak var UsernameField: UITextField!
@@ -25,7 +25,7 @@ class UserViewController: UIViewController{
             let password = PasswordField.text
             let email = EmailField.text
           
-            let urlPath: String = "http://192.168.1.107/registeruser.php?name=" + "\(username!)" + "&password=" + "\(password!)" + "&email=" + "\(email!)"
+            let urlPath: String = "http://192.168.1.111/registeruser.php?name=" + "\(username!)" + "&password=" + "\(password!)" + "&email=" + "\(email!)"
             print(urlPath)
             let url: NSURL = NSURL(string: urlPath)!
             let request: NSURLRequest = NSURLRequest(URL: url)

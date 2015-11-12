@@ -28,7 +28,7 @@ class UserLoginViewController:UIViewController {
     @IBAction func Login(sender: AnyObject) {
         var usernameInput = UsernameField.text
         var password = PasswordField.text
-        var urlPath: String = "http://192.168.1.107/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
+        var urlPath: String = "http://192.168.1.123/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
         print(urlPath)
         if urlPath.rangeOfString(" ") == nil{
         var url: NSURL = NSURL(string: urlPath)!

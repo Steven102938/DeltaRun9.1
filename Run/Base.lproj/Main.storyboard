@@ -303,6 +303,9 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="SignUpPressed:" destination="zS5-hW-pwO" eventType="touchUpInside" id="I04-eU-2WW"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <animations/>

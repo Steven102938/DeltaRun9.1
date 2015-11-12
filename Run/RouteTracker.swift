@@ -122,6 +122,22 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         } catch var error1 as NSError {
             error = error1
         }
+        let urlDateFormatter = NSDateFormatter()
+        urlDateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateRun = urlDateFormatter.stringFromDate(NSDate())
+        let userRequest = NSFetchRequest(entityName: "User")
+        let userInfoData:[User]
+        userInfoData = (try! managedObjectContext.executeFetchRequest(userRequest)) as! [User]
+        var currentUser = userInfoData[1]
+        var loginUserId = currentUser.userid
+        let urlPath: String = "http://192.168.1.123/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId)" + "&coordinates=" + "\"" + "\(encodedPath)" + "\""
+        print(urlPath)
+        let url: NSURL = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
+        let newRunRequest: NSURLRequest = NSURLRequest(URL: url)
+        let connection: NSURLConnection = NSURLConnection(request: newRunRequest, delegate: self, startImmediately: true)!
+        connection.start()
+        
+        // replace | with ~ for polyline to coordinatess
         stopUpdatingLocation()
         
         RunInfoData = (try! managedObjectContext.executeFetchRequest(request)) as! [RunInfo]

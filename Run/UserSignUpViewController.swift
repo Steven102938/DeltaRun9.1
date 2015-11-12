@@ -30,6 +30,27 @@ class UserSignUpViewController: UIViewController {
         
         datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
     }
+    @IBAction func SignUpPressed(sender: AnyObject) {
+        if UsernameTextField.text == "" || PasswordTextField.text == "" || EmailTextField.text == "" || FirstNameTextField.text == "" || LastNameTextField.text == "" || dateTextField == "" {
+        }
+        else {
+            let username = UsernameTextField.text
+            let password = PasswordTextField.text
+            let email = EmailTextField.text
+            let firstname = FirstNameTextField.text
+            let lastname = LastNameTextField.text
+            let birthdate = dateTextField.text
+            print(birthdate)
+            let urlPath: String = "http://192.168.1.111/registeruser.php?name=" + "\(username!)" + "&password=" + "\(password!)" + "&email=" + "\(email!)" + "&firstname=" + "\(firstname!)" + "&lastname=" + "\(lastname!)" + "&birthdate=" + "\(birthdate!)"
+            print(urlPath)
+            let url: NSURL = NSURL(string: urlPath)!
+            let request: NSURLRequest = NSURLRequest(URL: url)
+            let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: true)!
+            connection.start()
+        }
+
+    }
+    
     func textFieldShouldReturn(TextField: UITextField) -> Bool{
         if TextField == FirstNameTextField{
             returnBool = true
@@ -68,13 +89,14 @@ class UserSignUpViewController: UIViewController {
     }
     func datePickerValueChanged(sender:UIDatePicker) {
         
-        let dateFormatter = NSDateFormatter()
-        
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        
-        dateTextField.text = dateFormatter.stringFromDate(sender.date)
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+//        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+//        dateTextField.text = dateFormatter.stringFromDate(sender.date)
+//        
+        let urlDateFormatter = NSDateFormatter()
+        urlDateFormatter.dateFormat = "yyyy-MM-dd"
+         dateTextField.text = urlDateFormatter.stringFromDate(sender.date)
     }
     var keyboardInt:Int?
     func keyboardWillShow(notification:NSNotification){
