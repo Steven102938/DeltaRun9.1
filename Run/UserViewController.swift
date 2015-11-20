@@ -15,7 +15,7 @@ class UserViewController: UIViewController{
     @IBOutlet weak var UsernameField: UITextField!
     @IBOutlet weak var PasswordField: UITextField!
     @IBOutlet weak var EmailField: UITextField!
-    
+    @IBOutlet weak var RecentRuns: UITableView!
     
     @IBAction func Register(sender: AnyObject) {
         if UsernameField.text == "" || PasswordField.text == "" || EmailField.text == "" {

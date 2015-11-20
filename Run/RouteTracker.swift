@@ -93,6 +93,7 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
             inManagedObjectContext: managedObjectContext)
         let runInfo = RunInfo(entity: savedRun!, insertIntoManagedObjectContext: managedObjectContext)
         let imageData = UIImageJPEGRepresentation(screenshotOfMap, 1)
+
         runInfo.image = imageData!
         runInfo.distance = distance
         runInfo.duration = seconds
@@ -130,7 +131,10 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         userInfoData = (try! managedObjectContext.executeFetchRequest(userRequest)) as! [User]
         var currentUser = userInfoData[1]
         var loginUserId = currentUser.userid
-        let urlPath: String = "http://192.168.1.123/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId)" + "&coordinates=" + "\"" + "\(encodedPath)" + "\""
+        let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        print(base64String)
+
+        let urlPath: String = "http://192.168.1.137/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\"" + "\(encodedPath)" + "\""
         print(urlPath)
         let url: NSURL = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
         let newRunRequest: NSURLRequest = NSURLRequest(URL: url)

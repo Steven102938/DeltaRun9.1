@@ -22,6 +22,7 @@ class RouteInfo: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var paceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
     
     override func viewDidLoad() {
         loadLabels()

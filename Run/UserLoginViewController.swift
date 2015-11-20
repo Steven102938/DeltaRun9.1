@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+import GoogleMaps
 class UserLoginViewController:UIViewController {
     
     @IBOutlet weak var LoginView: UIView!
@@ -17,18 +18,52 @@ class UserLoginViewController:UIViewController {
     @IBOutlet weak var LoginButton: UIButton!
     @IBOutlet weak var WrongUsernameLabel: UILabel!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-
+    
+    var Baseurl = Firebase(url: "https://blazing-torch-6156.firebaseio.com")
     var userid:Int?
     var username:String?
     var email:String?
     var returnBool:Bool?
     var managedObjectContext: NSManagedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     //Optional(<5b6e756c 6c5d>)
-    
+    @IBAction func Signup(sender: AnyObject) {
+        resignFirstResponder()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     @IBAction func Login(sender: AnyObject) {
         var usernameInput = UsernameField.text
         var password = PasswordField.text
-        var urlPath: String = "http://192.168.1.123/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
+//        print(usernameInput)
+//        Baseurl.authUser("\(usernameInput!)", password:"\(password!)") {
+//            error, authData in
+//            if error != nil {
+//                print("error")
+//                if let errorCode = FAuthenticationError(rawValue: error.code) {
+//                    switch (errorCode) {
+//                    case .UserDoesNotExist:
+//                        print("Handle invalid user")
+//                    case .InvalidEmail:
+//                        print("Handle invalid email")
+//                    case .InvalidPassword:
+//                        print("Handle invalid password")
+//                    default:
+//                        print("Handle default situation")
+//                    }
+//                }
+//                // Something went wrong. :(
+//            } else {
+//                // Authentication just completed successfully :)
+//                // The logged in user's unique identifier
+//               
+//                print("append")
+//                print(authData.uid)
+//                print(authData.providerData)
+//                let SegueName = "LoginSegue"
+//                self.performSegueWithIdentifier(SegueName, sender: nil)
+//            }
+//        }
+   
+        var urlPath: String = "http://192.168.1.137/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
         print(urlPath)
         if urlPath.rangeOfString(" ") == nil{
         var url: NSURL = NSURL(string: urlPath)!
@@ -40,16 +75,20 @@ class UserLoginViewController:UIViewController {
         print(dictionary)
         for data in dictionary{
             if let useridLoop = data["userid"] {
+            let verificationid = data["verificationid"]
             let useridTemp = useridLoop as! String
             print(useridTemp)
             var useridTemp2:Int = Int("\(useridTemp)")!
-            var useridFetch:Int64 = Int64(useridTemp2)
+            var useridFetch:NSNumber = NSNumber(integer: useridTemp2)
+            var verificationIdFetch:String = "\(verificationid)"
+                
             let loginUser = NSEntityDescription.entityForName("User",
                 inManagedObjectContext: managedObjectContext)
             let loginInfo = User(entity: loginUser!, insertIntoManagedObjectContext: managedObjectContext)
             loginInfo.userid = useridFetch
             loginInfo.username = usernameInput
             loginInfo.password = password
+            loginInfo.verificationid = verificationIdFetch
             var error: NSError?
             
             do {
@@ -96,7 +135,7 @@ class UserLoginViewController:UIViewController {
     }
     func keyboardWillHide(notification:NSNotification){
         let sender: [NSObject:AnyObject] = notification.userInfo!
-        
+      if self.keyboardInt == 1 {
         let keyboardSize:CGSize = sender[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
         if returnBool != true {
             UIView.animateWithDuration(0.1, animations: {() -> Void in
@@ -109,6 +148,7 @@ class UserLoginViewController:UIViewController {
 
             })
         }
+      }
         else {
             print("d")
         }
@@ -136,6 +176,8 @@ class UserLoginViewController:UIViewController {
         PasswordField.returnKeyType = UIReturnKeyType.Done
         self.UsernameField.delegate = self
         self.PasswordField.delegate = self
+        
+        
     }
     
 }

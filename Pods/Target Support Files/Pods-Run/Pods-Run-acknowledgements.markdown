@@ -1,6 +1,10 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## Firebase
+
+https://www.firebase.com/terms/terms-of-service.html
+
 ## GoogleMaps
 
 If you use the Google Maps SDK for iOS in your application, you must

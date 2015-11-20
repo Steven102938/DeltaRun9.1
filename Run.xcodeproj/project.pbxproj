@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		324EECA01BDCAE00000DA7D9 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */; };
-		32BB8D461BEFD95A002D1FEE /* UserSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BB8D451BEFD95A002D1FEE /* UserSignUpViewController.swift */; };
+		326456301BF99C23007AB452 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3264562F1BF99C23007AB452 /* SignUpViewController.swift */; };
 		32D7754C1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */; };
 		32D7754D1BE1BE1C007DA0D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754B1BE1BE1C007DA0D9 /* User.swift */; };
 		B019AD591B87A614004B1690 /* UserDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019AD581B87A614004B1690 /* UserDatabase.swift */; };
@@ -65,7 +65,7 @@
 		174782AD07D4857A6EFCAA2B /* Pods-Run.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Run.release.xcconfig"; path = "Pods/Target Support Files/Pods-Run/Pods-Run.release.xcconfig"; sourceTree = "<group>"; };
 		3209F61A1BF44CF800F7AF35 /* Run-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Run-Bridging-Header.h"; sourceTree = "<group>"; };
 		324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
-		32BB8D451BEFD95A002D1FEE /* UserSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignUpViewController.swift; sourceTree = "<group>"; };
+		3264562F1BF99C23007AB452 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32D7754B1BE1BE1C007DA0D9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6835750FF00AFE0C7A499782 /* libPods-Run.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Run.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,11 +158,11 @@
 			children = (
 				B05055471BBB98D000590577 /* CoreData */,
 				B034DF441BD5B97D000D4BFE /* UserViewController.swift */,
-				32BB8D451BEFD95A002D1FEE /* UserSignUpViewController.swift */,
+				3264562F1BF99C23007AB452 /* SignUpViewController.swift */,
 				324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */,
 				B037B97E1BAFA24300209D75 /* RouteGenerateNavigation.swift */,
-				B02A170A1BB3872E00D539F1 /* RouteTracker.swift */,
 				B046E17D1BB65AB000E58F83 /* RouteInfo.swift */,
+				B02A170A1BB3872E00D539F1 /* RouteTracker.swift */,
 				B03A93DB1BC62DDF0057A978 /* MulticolorPolylineSegment.swift */,
 				B0504C771BA11B2500745B80 /* DirectionsViewController.swift */,
 				B01F76331B86EDA700048E53 /* RunViewController.swift */,
@@ -382,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				326456301BF99C23007AB452 /* SignUpViewController.swift in Sources */,
 				B02FD2081B8EBD23003579FF /* GlobalVariables.swift in Sources */,
 				B039DB2D1BC07FBD004D0DF2 /* Run.xcdatamodeld in Sources */,
 				B02FEE231B8C15160008E9A9 /* MapOverviewViewController.swift in Sources */,
@@ -389,7 +390,6 @@
 				B01F76341B86EDA700048E53 /* RunViewController.swift in Sources */,
 				B034DF451BD5B97D000D4BFE /* UserViewController.swift in Sources */,
 				B019AD591B87A614004B1690 /* UserDatabase.swift in Sources */,
-				32BB8D461BEFD95A002D1FEE /* UserSignUpViewController.swift in Sources */,
 				B01F76541B86FEAE00048E53 /* RouteHistoryViewController.swift in Sources */,
 				32D7754D1BE1BE1C007DA0D9 /* User.swift in Sources */,
 				B039DB311BC0BA7F004D0DF2 /* Location.swift in Sources */,

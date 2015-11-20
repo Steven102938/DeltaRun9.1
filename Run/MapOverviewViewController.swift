@@ -65,6 +65,7 @@ class MapOverviewViewController: UIViewController, MKMapViewDelegate, CLLocation
                         savedlocation.longitude = location.coordinate.longitude
                         runInfo.mutableOrderedSetValueForKey("locations").addObject(savedlocation)
                     }
+                var polyline = self.overviewPolyline
                 
                     // 3
                     var error: NSError?

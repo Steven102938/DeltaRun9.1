@@ -82,7 +82,7 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
             let RunInfoForTable = RunInfoData[indexPath.row]
             
             cell.routeName.text = RunInfoForTable.name
-            cell.mapImage.image = UIImage(data: RunInfoForTable.image)
+        //    cell.mapImage.image = UIImage(data: RunInfoForTable.image)
             cell.DetailSegue.setTitle("Info", forState: .Normal )
 
        
@@ -115,7 +115,6 @@ class mapCell:UITableViewCell {
     
    
    
-    @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var routeName: UILabel!
     @IBOutlet weak var DetailSegue: UIButton!
     override func awakeFromNib() {
