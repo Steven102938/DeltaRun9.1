@@ -75,12 +75,12 @@ class UserLoginViewController:UIViewController {
         print(dictionary)
         for data in dictionary{
             if let useridLoop = data["userid"] {
-            let verificationid = data["verificationid"]
+            let verificationid = data["verificationid"]!
             let useridTemp = useridLoop as! String
             print(useridTemp)
             var useridTemp2:Int = Int("\(useridTemp)")!
             var useridFetch:NSNumber = NSNumber(integer: useridTemp2)
-            var verificationIdFetch:String = "\(verificationid)"
+            var verificationIdFetch:String = "\(verificationid!)"
                 
             let loginUser = NSEntityDescription.entityForName("User",
                 inManagedObjectContext: managedObjectContext)
@@ -89,6 +89,7 @@ class UserLoginViewController:UIViewController {
             loginInfo.username = usernameInput
             loginInfo.password = password
             loginInfo.verificationid = verificationIdFetch
+                print(verificationIdFetch)
             var error: NSError?
             
             do {

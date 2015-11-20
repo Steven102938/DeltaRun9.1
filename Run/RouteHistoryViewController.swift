@@ -15,6 +15,7 @@ class RouteHistory: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableViewObject: UITableView!
    
+    
     var number = 1
     var managedObjectContext:NSManagedObjectContext? = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     var RunInfoData = [RunInfo]()
@@ -25,10 +26,27 @@ class RouteHistory: UIViewController, UITableViewDelegate {
         static var tempNumber: Int?
     }
     
-override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
+    
+    
+    let userRequest = NSFetchRequest(entityName: "User")
+    var userInfoData = (try! managedObjectContext!.executeFetchRequest(userRequest)) as! [User]
+    var currentUser = userInfoData[1]
+    var loginUserId = currentUser.userid
+    var verificationId = currentUser.verificationid
+    
+        var directionsURLString = NSURL(string: "http://192.168.1.137/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId!)")
+        print(directionsURLString)
+        let data = NSData(contentsOfURL: directionsURLString!)
+        let dictionary: NSMutableArray = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSMutableArray
+        print(dictionary)
+        for user in dictionary{
+        }
+    
+    
         tableViewObject.reloadData()
         tableViewObject.reloadInputViews()
-}
+    }
     
  func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         switch editingStyle {
