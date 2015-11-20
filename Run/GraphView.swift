@@ -30,8 +30,43 @@ import GoogleMaps
         let tempCoordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: Double(location.latitude), longitude: Double(location.longitude))
         arrayOfCoordinates.append(tempCoordinate)
         }
+        
+        var distancesArray = [Double]()
+        var currentCoordinates: Location
+        var pastCoordinates: Location
+        var distance: Double
+        
+        for i in 2...locationsArray.count {
+            currentCoordinates = locationsArray[i]
+            pastCoordinates = locationsArray[i-1]
+            
+            calculateDistance(currentCoordinates, pastCoordinates)
+            
+            distancesArray.append(distance)
+            
+        }
     }
 
+    func calculateDistance(currentCoordinates: Location, pastCoordinates: Location) -> Double {
+        /*
+        Haversine formula:
+        a = sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)
+        c = 2 ⋅ atan2( √a, √(1−a) )
+        d = R ⋅ c
+        where	φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km);
+        angles need to be in radians
+        */
+        
+        
+        
+        Double distance =
+        return distance
+    }
+    
+    func toRadians(degrees: Double) -> Double {
+        let DEG_TO_RAD = 0.017453292519943295769236907684886
+        return degrees * DEG_TO_RAD
+    }
     
     //1 - the properties for the gradient
     @IBInspectable var startColor: UIColor = UIColor.redColor()
@@ -62,5 +97,7 @@ import GoogleMaps
             startPoint,
             endPoint,
             [])
+        
+        
     }
 }
