@@ -32,22 +32,22 @@ import GoogleMaps
         }
         
         var distancesArray = [Double]()
-        var currentCoordinates: Location
-        var pastCoordinates: Location
+        var currentCoordinates: CLLocationCoordinate2D
+        var pastCoordinates: CLLocationCoordinate2D
         var distance: Double
         
-        for i in 2...locationsArray.count {
-            currentCoordinates = locationsArray[i]
-            pastCoordinates = locationsArray[i-1]
+        for i in 2...arrayOfCoordinates.count {
+            currentCoordinates = arrayOfCoordinates[i]
+            pastCoordinates = arrayOfCoordinates[i-1]
             
-            calculateDistance(currentCoordinates, pastCoordinates)
+            distance = calculateDistance(currentCoordinates, pastCoordinates: pastCoordinates)
             
             distancesArray.append(distance)
             
         }
     }
 
-    func calculateDistance(currentCoordinates: Location, pastCoordinates: Location) -> Double {
+    func calculateDistance(currentCoordinates: CLLocationCoordinate2D, pastCoordinates: CLLocationCoordinate2D) -> Double {
         /*
         Haversine formula:
         a = sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)
@@ -57,9 +57,20 @@ import GoogleMaps
         angles need to be in radians
         */
         
+        let radiusOfEarth = 20902230 //feet
         
+        let lat1 = pastCoordinates.latitude
+        let lat2 = currentCoordinates.latitude
+        let long1 = pastCoordinates.longitude
+        let long2 = currentCoordinates.longitude
         
-        Double distance =
+        let ΔφdividedBy2 = (lat2 - lat1) / 2
+        let ΔλdividedBy2 = (long2 - long1) / 2
+        let a = pow(sin(ΔφdividedBy2), 2) + cos(lat1) * cos(lat2) * pow(sin(ΔλdividedBy2), 2)
+        
+        let c = 2 * asin(sqrt(a))
+        
+        let distance = c * Double(radiusOfEarth)
         return distance
     }
     
