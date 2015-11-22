@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		324EECA01BDCAE00000DA7D9 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */; };
 		326456301BF99C23007AB452 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3264562F1BF99C23007AB452 /* SignUpViewController.swift */; };
+		32CF6A0B1C017B3B00DA3F89 /* Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */; };
 		32D7754C1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */; };
 		32D7754D1BE1BE1C007DA0D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754B1BE1BE1C007DA0D9 /* User.swift */; };
 		B019AD591B87A614004B1690 /* UserDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019AD581B87A614004B1690 /* UserDatabase.swift */; };
@@ -31,7 +32,6 @@
 		B039DB311BC0BA7F004D0DF2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB301BC0BA7F004D0DF2 /* Location.swift */; };
 		B03A93DC1BC62DDF0057A978 /* MulticolorPolylineSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03A93DB1BC62DDF0057A978 /* MulticolorPolylineSegment.swift */; };
 		B03F4D541BD354F100E84F04 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B03F4D531BD354F100E84F04 /* libsqlite3.0.dylib */; };
-		B04472091BC1AC9C00CADBC8 /* Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04472081BC1AC9C00CADBC8 /* Polyline.swift */; };
 		B046E17E1BB65AB000E58F83 /* RouteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B046E17D1BB65AB000E58F83 /* RouteInfo.swift */; };
 		B046E1821BB668C600E58F83 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B046E1811BB668C600E58F83 /* GraphView.swift */; };
 		B0504C781BA11B2500745B80 /* DirectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0504C771BA11B2500745B80 /* DirectionsViewController.swift */; };
@@ -66,6 +66,7 @@
 		3209F61A1BF44CF800F7AF35 /* Run-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Run-Bridging-Header.h"; sourceTree = "<group>"; };
 		324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		3264562F1BF99C23007AB452 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polyline.swift; sourceTree = "<group>"; };
 		32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32D7754B1BE1BE1C007DA0D9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6835750FF00AFE0C7A499782 /* libPods-Run.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Run.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,7 +95,6 @@
 		B039DB301BC0BA7F004D0DF2 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		B03A93DB1BC62DDF0057A978 /* MulticolorPolylineSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MulticolorPolylineSegment.swift; sourceTree = "<group>"; };
 		B03F4D531BD354F100E84F04 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		B04472081BC1AC9C00CADBC8 /* Polyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polyline.swift; sourceTree = "<group>"; };
 		B046E17D1BB65AB000E58F83 /* RouteInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteInfo.swift; sourceTree = "<group>"; };
 		B046E1811BB668C600E58F83 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		B0504C771BA11B2500745B80 /* DirectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionsViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				B02FD2071B8EBD23003579FF /* GlobalVariables.swift */,
-				B04472081BC1AC9C00CADBC8 /* Polyline.swift */,
+				32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */,
 				B01F763A1B86EDA700048E53 /* LaunchScreen.xib */,
 				B01F76301B86EDA700048E53 /* Info.plist */,
 			);
@@ -400,8 +400,8 @@
 				324EECA01BDCAE00000DA7D9 /* UserLoginViewController.swift in Sources */,
 				B046E17E1BB65AB000E58F83 /* RouteInfo.swift in Sources */,
 				B037B97F1BAFA24300209D75 /* RouteGenerateNavigation.swift in Sources */,
+				32CF6A0B1C017B3B00DA3F89 /* Polyline.swift in Sources */,
 				B0504C781BA11B2500745B80 /* DirectionsViewController.swift in Sources */,
-				B04472091BC1AC9C00CADBC8 /* Polyline.swift in Sources */,
 				B01F76321B86EDA700048E53 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

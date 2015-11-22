@@ -21,7 +21,13 @@ class RouteHistory: UIViewController, UITableViewDelegate {
     var RunInfoData = [RunInfo]()
     var deleteRouteIndexPath: NSIndexPath? = nil
     var RunInfoSegue = "RunInfo"
-    
+    var routeNames = [String]()
+    var routeDuration = [Int]()
+    var routeDistance = [Int]()
+    var routeDaterun = [String]()
+    var routeCoordinates = [String]()
+    var routeRunId = [String]()
+
     struct global {
         static var tempNumber: Int?
     }
@@ -31,18 +37,35 @@ class RouteHistory: UIViewController, UITableViewDelegate {
     
     let userRequest = NSFetchRequest(entityName: "User")
     var userInfoData = (try! managedObjectContext!.executeFetchRequest(userRequest)) as! [User]
-    var currentUser = userInfoData[1]
+    var currentUser = userInfoData.removeLast()
     var loginUserId = currentUser.userid
-    var verificationId = currentUser.verificationid
-    
-        var directionsURLString = NSURL(string: "http://192.168.1.137/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId!)")
-        print(directionsURLString)
+    var verificationIdTemp:String = currentUser.verificationid!
+    var verificationIdTemp2:String = verificationIdTemp.stringByReplacingOccurrencesOfString("Optional(", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+    var verificationId:String = verificationIdTemp2.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+
+        print(verificationId)
+        var runQuery:String = "http://192.168.1.137/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
+        var directionsURLString = NSURL(string: runQuery)
+        print(directionsURLString!)
         let data = NSData(contentsOfURL: directionsURLString!)
         let dictionary: NSMutableArray = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSMutableArray
         print(dictionary)
         for user in dictionary{
+        let tempName = user["name"]! as! String
+        let tempDuration = user["duration"]!!.integerValue
+        let tempDistance = user["distance"]!!.integerValue
+        let tempDaterun = user["daterun"]! as! String
+        let tempCoordinates = user["coordinates"]! as! String
+        let tempRunId = user["runid"]! as! String
+            
+            self.routeNames.append(tempName)
+            self.routeDuration.append(tempDuration)
+            self.routeDistance.append(tempDistance)
+            self.routeDaterun.append(tempDaterun)
+            self.routeCoordinates.append(tempCoordinates)
+            self.routeRunId.append(tempRunId)
         }
-    
+
     
         tableViewObject.reloadData()
         tableViewObject.reloadInputViews()

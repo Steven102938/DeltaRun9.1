@@ -12,7 +12,8 @@
         <attribute name="generated" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="polyline" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Location" inverseName="runinfo" inverseEntity="Location" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
@@ -23,7 +24,7 @@
     </entity>
     <elements>
         <element name="Location" positionX="-36" positionY="9" width="128" height="105"/>
-        <element name="RunInfo" positionX="-218" positionY="-63" width="128" height="150"/>
+        <element name="RunInfo" positionX="-218" positionY="-63" width="128" height="165"/>
         <element name="User" positionX="-126" positionY="9" width="128" height="105"/>
     </elements>
 </model>

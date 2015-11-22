@@ -18,7 +18,8 @@ class UserLoginViewController:UIViewController {
     @IBOutlet weak var LoginButton: UIButton!
     @IBOutlet weak var WrongUsernameLabel: UILabel!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
+   
+    var keyboardInt:Int?
     var Baseurl = Firebase(url: "https://blazing-torch-6156.firebaseio.com")
     var userid:Int?
     var username:String?
@@ -33,35 +34,6 @@ class UserLoginViewController:UIViewController {
     @IBAction func Login(sender: AnyObject) {
         var usernameInput = UsernameField.text
         var password = PasswordField.text
-//        print(usernameInput)
-//        Baseurl.authUser("\(usernameInput!)", password:"\(password!)") {
-//            error, authData in
-//            if error != nil {
-//                print("error")
-//                if let errorCode = FAuthenticationError(rawValue: error.code) {
-//                    switch (errorCode) {
-//                    case .UserDoesNotExist:
-//                        print("Handle invalid user")
-//                    case .InvalidEmail:
-//                        print("Handle invalid email")
-//                    case .InvalidPassword:
-//                        print("Handle invalid password")
-//                    default:
-//                        print("Handle default situation")
-//                    }
-//                }
-//                // Something went wrong. :(
-//            } else {
-//                // Authentication just completed successfully :)
-//                // The logged in user's unique identifier
-//               
-//                print("append")
-//                print(authData.uid)
-//                print(authData.providerData)
-//                let SegueName = "LoginSegue"
-//                self.performSegueWithIdentifier(SegueName, sender: nil)
-//            }
-//        }
    
         var urlPath: String = "http://192.168.1.137/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
         print(urlPath)
@@ -69,7 +41,7 @@ class UserLoginViewController:UIViewController {
         var url: NSURL = NSURL(string: urlPath)!
         let data = NSData(contentsOfURL: url)
             print(data)
-        
+            if data != nil {
         var dictionary: NSMutableArray = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSMutableArray
 
         print(dictionary)
@@ -98,6 +70,7 @@ class UserLoginViewController:UIViewController {
                 let nserror = error as NSError
                 abort()
             }
+                FindRoutes()
                 let SegueName = "LoginSegue"
                 self.performSegueWithIdentifier(SegueName, sender: nil)
 
@@ -108,13 +81,123 @@ class UserLoginViewController:UIViewController {
     }
         
         //Fetching data with user id
-        
+                //        print(usernameInput)
+                //        Baseurl.authUser("\(usernameInput!)", password:"\(password!)") {
+                //            error, authData in
+                //            if error != nil {
+                //                print("error")
+                //                if let errorCode = FAuthenticationError(rawValue: error.code) {
+                //                    switch (errorCode) {
+                //                    case .UserDoesNotExist:
+                //                        print("Handle invalid user")
+                //                    case .InvalidEmail:
+                //                        print("Handle invalid email")
+                //                    case .InvalidPassword:
+                //                        print("Handle invalid password")
+                //                    default:
+                //                        print("Handle default situation")
+                //                    }
+                //                }
+                //                // Something went wrong. :(
+                //            } else {
+                //                // Authentication just completed successfully :)
+                //                // The logged in user's unique identifier
+                //               
+                //                print("append")
+                //                print(authData.uid)
+                //                print(authData.providerData)
+                //                let SegueName = "LoginSegue"
+                //                self.performSegueWithIdentifier(SegueName, sender: nil)
+                //            }
+                //        }
+
         //segue into app
       
-       
+            }
         }
     }
-    var keyboardInt:Int?
+    
+    func FindRoutes() {
+        
+        let userRequest = NSFetchRequest(entityName: "User")
+        var userInfoData = (try! managedObjectContext.executeFetchRequest(userRequest)) as! [User]
+        var currentUser = userInfoData.removeLast()
+        var loginUserId = currentUser.userid
+        var verificationIdTemp:String = currentUser.verificationid!
+        var verificationIdTemp2:String = verificationIdTemp.stringByReplacingOccurrencesOfString("Optional(", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        var verificationId:String = verificationIdTemp2.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        print(verificationId)
+        var runQuery:String = "http://192.168.1.137/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
+        var directionsURLString = NSURL(string: runQuery)
+        print(directionsURLString!)
+        let data = NSData(contentsOfURL: directionsURLString!)
+        let dictionary: NSMutableArray = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSMutableArray
+     //   print(dictionary)
+        clearRoutes()
+        for user in dictionary{
+            let tempName = user["name"]! as! String
+            let tempDuration = user["duration"]!!.integerValue
+            let tempDistance = user["distance"]!!.doubleValue
+            let tempDaterun = user["daterun"]! as! String
+            let tempCoordinates = user["coordinates"]! as! String
+            let tempRunId = user["runid"]! as! String
+            
+            let savedRun = NSEntityDescription.entityForName("RunInfo",
+                inManagedObjectContext: managedObjectContext)
+            let runInfo = RunInfo(entity: savedRun!, insertIntoManagedObjectContext: managedObjectContext)
+            
+            runInfo.distance = tempDistance
+            runInfo.duration = tempDuration
+            runInfo.timestamp = tempDaterun
+            runInfo.name = tempName
+            runInfo.generated = false
+            runInfo.polyline = tempCoordinates
+            var error: NSError?
+            let request = NSFetchRequest(entityName: "RunInfo")
+            
+            do {
+                try managedObjectContext.save()
+            } catch var error1 as NSError {
+                error = error1
+            }
+        }
+        
+      
+        // 2
+        
+  //      for location in locations {
+  //         let savedRun = NSEntityDescription.entityForName("Location",
+  //              inManagedObjectContext: managedObjectContext)
+  //          let savedlocation = Location(entity: savedRun!, insertIntoManagedObjectContext: managedObjectContext)
+            
+  //          savedlocation.timestamp = location.timestamp
+  //           savedlocation.latitude = location.coordinate.latitude
+  //            savedlocation.longitude = location.coordinate.longitude
+//            runInfo.mutableOrderedSetValueForKey("locations").addObject(savedlocation)
+            
+    //    }
+        
+        // 3
+       
+    }
+    func clearRoutes(){
+        print("clearing")
+    let request = NSFetchRequest(entityName: "RunInfo")
+    var RunInfoData = (try! managedObjectContext.executeFetchRequest(request)) as! [RunInfo]
+        print(RunInfoData.count)
+        while RunInfoData.count != 0 {
+        var count:Int = RunInfoData.count
+        print("bounds")
+        self.managedObjectContext.deleteObject(RunInfoData.removeLast() as NSManagedObject)
+            print(RunInfoData.count)
+            do {
+                try self.managedObjectContext.save()
+            } catch _ {
+            }
+        }
+    print("cleared")
+    }
     func keyboardWillShow(notification:NSNotification){
         let sender: [NSObject:AnyObject] = notification.userInfo!
       

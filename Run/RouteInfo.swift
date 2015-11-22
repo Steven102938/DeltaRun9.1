@@ -63,36 +63,42 @@ class RouteInfo: UIViewController {
         var routeNumber = mainInstance.routeNumber
 
         let previousRun = RunInfoData[routeNumber! - 1]
-        var previousRunLocations = previousRun.locations
-        var locationsArray = Array(previousRunLocations) as! [Location]
-        var arrayOfCoordinates = [CLLocationCoordinate2D]()
-        for location in locationsArray{
-            let tempCoordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: Double(location.latitude), longitude: Double(location.longitude))
-            arrayOfCoordinates.append(tempCoordinate)
-        }
-        var encodedPath:String = encodeCoordinates(arrayOfCoordinates)
-        var path:GMSPath = GMSPath(fromEncodedPath: encodedPath)
+//        var previousRunLocations = previousRun.locations
+//        var locationsArray = Array(previousRunLocations) as! [Location]
+//        var arrayOfCoordinates = [CLLocationCoordinate2D]()
+//        for location in locationsArray{
+//            let tempCoordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: Double(location.latitude), longitude: Double(location.longitude))
+//            arrayOfCoordinates.append(tempCoordinate)
+//        }
+//        var encodedPath:String = encodeCoordinates(arrayOfCoordinates)
+        var path:GMSPath = GMSPath(fromEncodedPath: previousRun.polyline)
         var camera:GMSCoordinateBounds = GMSCoordinateBounds(path: path)
         var insets:UIEdgeInsets = UIEdgeInsetsMake(60, 60, 60, 60)
         var cameraPosition = mapView.cameraForBounds(camera, insets: insets)
         mapView.camera = cameraPosition
-            if previousRun.locations.count > 0 {
-                
-                let colorSegments = MulticolorPolylineSegment.colorSegments(forLocations: locationsArray)
-                for polylines in colorSegments {
-                    polylines.map = mapView
-                    polylines.strokeColor = polylines.color
-                }
-                
-            } else {
-                // No locations were found!
-                mapView.hidden = true
-                
-                UIAlertView(title: "Error",
-                    message: "Sorry, this run has no locations saved",
-                    delegate:nil,
-                    cancelButtonTitle: "OK").show()
-            }
+        var coordinates:[CLLocationCoordinate2D] = decodePolyline(previousRun.polyline)!
+        print(coordinates)
+        
+        var routePolyline = GMSPolyline(path: path)
+        routePolyline.map = mapView
+        
+//            if previousRun.locations.count > 0 {
+//                
+//                let colorSegments = MulticolorPolylineSegment.colorSegments(forLocations: locationsArray)
+//                for polylines in colorSegments {
+//                    polylines.map = mapView
+//                    polylines.strokeColor = polylines.color
+//                }
+        
+//            } else {
+//                // No locations were found!
+//                mapView.hidden = true
+//                
+//                UIAlertView(title: "Error",
+//                    message: "Sorry, this run has no locations saved",
+//                    delegate:nil,
+//                    cancelButtonTitle: "OK").show()
+//            }
         }
     
     

@@ -38,9 +38,12 @@ class MapOverviewViewController: UIViewController, MKMapViewDelegate, CLLocation
         let saveAction = UIAlertAction(title: "Save",
             style: .Default) { (action: UIAlertAction) -> Void in
         
-        let textField = alert.textFields![0] 
+        let textField = alert.textFields![0]
+                
                 names = textField.text
-
+                let urlDateFormatter = NSDateFormatter()
+                urlDateFormatter.dateFormat = "yyyy-MM-dd-H:mm"
+                let dateRun = urlDateFormatter.stringFromDate(NSDate())
                 
                     let savedRun = NSEntityDescription.entityForName("RunInfo",
                         inManagedObjectContext: self.managedObjectContext)
@@ -49,7 +52,7 @@ class MapOverviewViewController: UIViewController, MKMapViewDelegate, CLLocation
                     runInfo.image = imageData!
                     runInfo.distance = self.totalDistanceInMeters
                     runInfo.duration = self.totalDurationInSeconds
-                    runInfo.timestamp = NSDate()
+                    runInfo.timestamp = dateRun
                     runInfo.name = names!
                 runInfo.generated = true
                     // 2

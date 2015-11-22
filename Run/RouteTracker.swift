@@ -77,6 +77,7 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         for location in locations{
             locationarray.append(location.coordinate)
         }
+        print(locationarray)
         var encodedPath:String = encodeCoordinates(locationarray)
         var path:GMSPath = GMSPath(fromEncodedPath: encodedPath)
         var camera:GMSCoordinateBounds = GMSCoordinateBounds(path: path)
@@ -93,11 +94,14 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
             inManagedObjectContext: managedObjectContext)
         let runInfo = RunInfo(entity: savedRun!, insertIntoManagedObjectContext: managedObjectContext)
         let imageData = UIImageJPEGRepresentation(screenshotOfMap, 1)
-
+        let urlDateFormatter = NSDateFormatter()
+        urlDateFormatter.dateFormat = "yyyy-MM-dd-H:mm"
+        let dateRun = urlDateFormatter.stringFromDate(NSDate())
+        
         runInfo.image = imageData!
         runInfo.distance = distance
         runInfo.duration = seconds
-        runInfo.timestamp = NSDate()
+        runInfo.timestamp = dateRun
         runInfo.name = name
         runInfo.generated = false
         // 2
@@ -123,18 +127,16 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         } catch var error1 as NSError {
             error = error1
         }
-        let urlDateFormatter = NSDateFormatter()
-        urlDateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateRun = urlDateFormatter.stringFromDate(NSDate())
+        
         let userRequest = NSFetchRequest(entityName: "User")
-        let userInfoData:[User]
+        var userInfoData:[User]
         userInfoData = (try! managedObjectContext.executeFetchRequest(userRequest)) as! [User]
-        var currentUser = userInfoData[1]
+        var currentUser = userInfoData.removeLast()
         var loginUserId = currentUser.userid
         let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
         print(base64String)
 
-        let urlPath: String = "http://192.168.1.137/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\"" + "\(encodedPath)" + "\""
+        let urlPath: String = "http://192.168.1.115/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\"" + "\(encodedPath)" + "\""
         print(urlPath)
         let url: NSURL = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
         let newRunRequest: NSURLRequest = NSURLRequest(URL: url)

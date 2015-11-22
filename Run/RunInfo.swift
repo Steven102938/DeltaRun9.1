@@ -15,9 +15,10 @@ class RunInfo: NSManagedObject {
     @NSManaged var duration: NSNumber
     @NSManaged var image: NSData
     @NSManaged var name: String
-    @NSManaged var timestamp: NSDate
+    @NSManaged var timestamp: String
     @NSManaged var locations: NSOrderedSet
     @NSManaged var generated: Bool
+    @NSManaged var polyline: String
 
 }
 extension RunInfo {
