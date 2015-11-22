@@ -6,6 +6,7 @@
 //
 //
 
+import Darwin
 import Foundation
 import UIKit
 import CoreData
@@ -31,23 +32,29 @@ import GoogleMaps
         arrayOfCoordinates.append(tempCoordinate)
         }
         
+        
+        
         var distancesArray = [Double]()
-        var currentCoordinates: Location
-        var pastCoordinates: Location
+        var speedsArray = [Double]()
+        var currentCoordinates: CLLocationCoordinate2D
+        var pastCoordinates: CLLocationCoordinate2D
         var distance: Double
         
-        for i in 2...locationsArray.count {
-            currentCoordinates = locationsArray[i]
-            pastCoordinates = locationsArray[i-1]
+        
+        
+        for i in 2...arrayOfCoordinates.count {
+            currentCoordinates = arrayOfCoordinates[i]
+            pastCoordinates = arrayOfCoordinates[i-1]
             
-            calculateDistance(currentCoordinates, pastCoordinates)
+            var distance = calculateDistance(currentCoordinates, pastCoordinates: pastCoordinates)
+            var speed = calculateSpeed(distance)
             
             distancesArray.append(distance)
-            
+            speedsArray.append(speed)
         }
     }
 
-    func calculateDistance(currentCoordinates: Location, pastCoordinates: Location) -> Double {
+    func calculateDistance(currentCoordinates: CLLocationCoordinate2D, pastCoordinates: CLLocationCoordinate2D) -> Double {
         /*
         Haversine formula:
         a = sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)
@@ -56,17 +63,40 @@ import GoogleMaps
         where	φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km);
         angles need to be in radians
         */
+        //var radiusOfEarth = 20903520 //derived from radius of Earth in miles (in feet)
+        
+        let radiusOfEarth = 20902230 // derived from radius of the Earth in KM (in feet)
+        let lat1 = toRadians(currentCoordinates.latitude)
+        let lat2 = toRadians(pastCoordinates.latitude)
+        let long1 = toRadians(currentCoordinates.longitude)
+        let long2 = toRadians(pastCoordinates.longitude)
         
         
+        let ΔφdividedBy2 = (lat1 - lat2)/2
+        let ΔλdividedBy2 = (long1 - long2)/2
+        let a = pow(sin(ΔφdividedBy2), 2) + cos(lat1) * cos(lat2) * pow(sin(ΔλdividedBy2), 2)
         
-        Double distance =
-        return distance
+        let c = 2 * asin(sqrt(a))
+        
+        let distance = c * Double(radiusOfEarth)
+        
+        return distance //returns in feet
     }
     
     func toRadians(degrees: Double) -> Double {
         let DEG_TO_RAD = 0.017453292519943295769236907684886
         return degrees * DEG_TO_RAD
     }
+    
+    
+    func calculateSpeed(distance: Double) -> Double {
+        let rateOfLocationUpdates = 1.0 //second
+        let speed = distance / rateOfLocationUpdates //in feet per second
+        
+        return speed
+    }
+    
+    
     
     //1 - the properties for the gradient
     @IBInspectable var startColor: UIColor = UIColor.redColor()
