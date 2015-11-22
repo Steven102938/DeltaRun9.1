@@ -41,11 +41,10 @@ import GoogleMaps
         var distance: Double
         var speed: Double
         
-
         for i in 2...arrayOfCoordinates.count {
             currentCoordinates = arrayOfCoordinates[i]
             pastCoordinates = arrayOfCoordinates[i-1]
-            
+
             distance = calculateDistance(currentCoordinates, pastCoordinates: pastCoordinates)
             speed = calculateSpeed(distance)
             
@@ -78,6 +77,7 @@ import GoogleMaps
         let c = 2 * asin(sqrt(a))
         
         let distance = c * Double(radiusOfEarth)
+
         return distance //returns in feet
     }
     
