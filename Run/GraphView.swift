@@ -39,15 +39,14 @@ import GoogleMaps
         var currentCoordinates: CLLocationCoordinate2D
         var pastCoordinates: CLLocationCoordinate2D
         var distance: Double
-        
-        
+        var speed: Double
         
         for i in 2...arrayOfCoordinates.count {
             currentCoordinates = arrayOfCoordinates[i]
             pastCoordinates = arrayOfCoordinates[i-1]
-            
-            var distance = calculateDistance(currentCoordinates, pastCoordinates: pastCoordinates)
-            var speed = calculateSpeed(distance)
+
+            distance = calculateDistance(currentCoordinates, pastCoordinates: pastCoordinates)
+            speed = calculateSpeed(distance)
             
             distancesArray.append(distance)
             speedsArray.append(speed)
@@ -66,20 +65,19 @@ import GoogleMaps
         //var radiusOfEarth = 20903520 //derived from radius of Earth in miles (in feet)
         
         let radiusOfEarth = 20902230 // derived from radius of the Earth in KM (in feet)
-        let lat1 = toRadians(currentCoordinates.latitude)
-        let lat2 = toRadians(pastCoordinates.latitude)
-        let long1 = toRadians(currentCoordinates.longitude)
-        let long2 = toRadians(pastCoordinates.longitude)
+        let lat2 = toRadians(currentCoordinates.latitude)
+        let lat1 = toRadians(pastCoordinates.latitude)
+        let long2 = toRadians(currentCoordinates.longitude)
+        let long1 = toRadians(pastCoordinates.longitude)
         
-        
-        let ΔφdividedBy2 = (lat1 - lat2)/2
-        let ΔλdividedBy2 = (long1 - long2)/2
+        let ΔφdividedBy2 = (lat2 - lat1) / 2
+        let ΔλdividedBy2 = (long2 - long1) / 2
         let a = pow(sin(ΔφdividedBy2), 2) + cos(lat1) * cos(lat2) * pow(sin(ΔλdividedBy2), 2)
         
         let c = 2 * asin(sqrt(a))
         
         let distance = c * Double(radiusOfEarth)
-        
+
         return distance //returns in feet
     }
     
