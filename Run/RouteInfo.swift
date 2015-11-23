@@ -62,7 +62,7 @@ class RouteInfo: UIViewController {
         RunInfoData = (try! managedObjectContext?.executeFetchRequest(request)) as! [RunInfo]
         var routeNumber = mainInstance.routeNumber
 
-        let previousRun = RunInfoData[routeNumber! - 1]
+        let previousRun = RunInfoData[routeNumber! - 1 ]
 //        var previousRunLocations = previousRun.locations
 //        var locationsArray = Array(previousRunLocations) as! [Location]
 //        var arrayOfCoordinates = [CLLocationCoordinate2D]()
@@ -71,13 +71,14 @@ class RouteInfo: UIViewController {
 //            arrayOfCoordinates.append(tempCoordinate)
 //        }
 //        var encodedPath:String = encodeCoordinates(arrayOfCoordinates)
+        
         var path:GMSPath = GMSPath(fromEncodedPath: previousRun.polyline)
         var camera:GMSCoordinateBounds = GMSCoordinateBounds(path: path)
         var insets:UIEdgeInsets = UIEdgeInsetsMake(60, 60, 60, 60)
         var cameraPosition = mapView.cameraForBounds(camera, insets: insets)
         mapView.camera = cameraPosition
-        var coordinates:[CLLocationCoordinate2D] = decodePolyline(previousRun.polyline)!
-        print(coordinates)
+        print("\(previousRun.polyline)")
+       // var coordinates:[CLLocationCoordinate2D] = decodePolyline(previousRun.polyline)
         
         var routePolyline = GMSPolyline(path: path)
         routePolyline.map = mapView

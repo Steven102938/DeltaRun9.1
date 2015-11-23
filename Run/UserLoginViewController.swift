@@ -35,7 +35,7 @@ class UserLoginViewController:UIViewController {
         var usernameInput = UsernameField.text
         var password = PasswordField.text
    
-        var urlPath: String = "http://192.168.1.137/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
+        var urlPath: String = "http://192.168.1.120/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
         print(urlPath)
         if urlPath.rangeOfString(" ") == nil{
         var url: NSURL = NSURL(string: urlPath)!
@@ -66,11 +66,12 @@ class UserLoginViewController:UIViewController {
             
             do {
                 try managedObjectContext.save()
+                FindRoutes()
+
             } catch  {
                 let nserror = error as NSError
                 abort()
             }
-                FindRoutes()
                 let SegueName = "LoginSegue"
                 self.performSegueWithIdentifier(SegueName, sender: nil)
 
@@ -128,7 +129,7 @@ class UserLoginViewController:UIViewController {
         var verificationId:String = verificationIdTemp2.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
         print(verificationId)
-        var runQuery:String = "http://192.168.1.137/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
+        var runQuery:String = "http://192.168.1.120/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
         var directionsURLString = NSURL(string: runQuery)
         print(directionsURLString!)
         let data = NSData(contentsOfURL: directionsURLString!)

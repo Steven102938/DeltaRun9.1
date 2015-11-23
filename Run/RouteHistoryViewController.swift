@@ -44,7 +44,7 @@ class RouteHistory: UIViewController, UITableViewDelegate {
     var verificationId:String = verificationIdTemp2.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
 
         print(verificationId)
-        var runQuery:String = "http://192.168.1.137/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
+        var runQuery:String = "http://192.168.1.120/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
         var directionsURLString = NSURL(string: runQuery)
         print(directionsURLString!)
         let data = NSData(contentsOfURL: directionsURLString!)

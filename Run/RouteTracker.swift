@@ -79,6 +79,8 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         }
         print(locationarray)
         var encodedPath:String = encodeCoordinates(locationarray)
+        var decoded:[CLLocationCoordinate2D] = decodePolyline(encodedPath)!
+        print(decoded)
         var path:GMSPath = GMSPath(fromEncodedPath: encodedPath)
         var camera:GMSCoordinateBounds = GMSCoordinateBounds(path: path)
         var insets:UIEdgeInsets = UIEdgeInsetsMake(60, 60, 60, 60)
@@ -136,7 +138,7 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
         print(base64String)
 
-        let urlPath: String = "http://192.168.1.115/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\"" + "\(encodedPath)" + "\""
+        let urlPath: String = "http://192.168.1.120/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\"" + "\(encodedPath)" + "\""
         print(urlPath)
         let url: NSURL = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
         let newRunRequest: NSURLRequest = NSURLRequest(URL: url)
@@ -312,6 +314,7 @@ extension RouteTracker {
                     var coords = [CLLocationCoordinate2D]()
                     coords.append(self.locations.last!.coordinate)
                     coords.append(location.coordinate)
+                    print(location)
                     for coordinate in coords{
                     path.addCoordinate(coordinate)
                         var polyline = GMSPolyline(path: path)
