@@ -89,8 +89,8 @@ import GoogleMaps
     
     func calculateSpeed(distance: Double) -> Double {
         let rateOfLocationUpdates = 1.0 //second
-        let speed = distance / rateOfLocationUpdates //in feet per second
-        
+        var speed = distance / rateOfLocationUpdates //in feet per second
+        speed = speed / 5280 * 3600 //in miles per hour
         return speed
     }
     
