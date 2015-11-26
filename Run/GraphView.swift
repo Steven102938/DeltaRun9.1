@@ -15,7 +15,12 @@ import GoogleMaps
     
     let managedObjectContext:NSManagedObjectContext? = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     var RunInfoData = [RunInfo]()
+    var speedsArray = [Double]()
     
+    //This is sample data to test the graph
+    //var speedsArray:[Double] = [4, 2, 6, 4, 5, 8, 3]
+
+
     func viewDidLoad() {
  
         var error: NSError?
@@ -35,7 +40,6 @@ import GoogleMaps
         
         
         var distancesArray = [Double]()
-        var speedsArray = [Double]()
         var currentCoordinates: CLLocationCoordinate2D
         var pastCoordinates: CLLocationCoordinate2D
         var distance: Double
@@ -51,8 +55,13 @@ import GoogleMaps
             distancesArray.append(distance)
             speedsArray.append(speed)
         }
+        
+        
+        overlayPoints(speedsArray)
     }
-
+    func overlayPoints(speedArray:[Double]) {
+        
+    }
     func calculateDistance(currentCoordinates: CLLocationCoordinate2D, pastCoordinates: CLLocationCoordinate2D) -> Double {
         /*
         Haversine formula:
@@ -102,6 +111,9 @@ import GoogleMaps
     
     override func drawRect(rect: CGRect) {
         
+        let width = rect.width
+        let height = rect.height
+        
         //2 - get the current context
         let context = UIGraphicsGetCurrentContext()
         let colors = [startColor.CGColor, endColor.CGColor]
@@ -125,7 +137,46 @@ import GoogleMaps
             startPoint,
             endPoint,
             [])
+        //calculate the x point
         
+        let margin:CGFloat = 20.0
+        var columnXPoint = { (column:Int) -> CGFloat in
+            //Calculate gap between points
+            let spacer = (width - margin*2 - 4) /
+                CGFloat((self.speedsArray.count - 1))
+            var x:CGFloat = CGFloat(column) * spacer
+            x += margin + 2
+            return x
+        }
+        // calculate the y point
         
+        let topBorder:CGFloat = 60
+        let bottomBorder:CGFloat = 50
+        let graphHeight = height - topBorder - bottomBorder
+        let maxValue = self.speedsArray.maxElement()
+        var columnYPoint = { (graphPoint:Double) -> CGFloat in
+            var y:CGFloat = CGFloat(graphPoint) /
+                CGFloat(maxValue!) * graphHeight
+            y = graphHeight + topBorder - y // Flip the graph
+            return y
+        }
+        // draw the line graph
+        
+        UIColor.whiteColor().setFill()
+        UIColor.whiteColor().setStroke()
+        
+        //set up the points line
+        var graphPath = UIBezierPath()
+        //go to start of line
+        graphPath.moveToPoint(CGPoint(x:columnXPoint(0), y:columnYPoint(self.speedsArray[0])))
+        
+        //add points for each item in the graphPoints array
+        //at the correct (x, y) for the point
+        for i in 1..<speedsArray.count {
+            let nextPoint = CGPoint(x:columnXPoint(i), y:columnYPoint(self.speedsArray[i]))
+            graphPath.addLineToPoint(nextPoint)
+        }
+        
+        graphPath.stroke()
     }
 }
