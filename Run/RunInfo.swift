@@ -13,7 +13,7 @@ class RunInfo: NSManagedObject {
 
     @NSManaged var distance: NSNumber
     @NSManaged var duration: NSNumber
-    @NSManaged var image: NSData
+    @NSManaged var image: String
     @NSManaged var name: String
     @NSManaged var timestamp: String
     @NSManaged var locations: NSOrderedSet

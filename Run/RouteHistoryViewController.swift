@@ -11,6 +11,8 @@ import MapKit
 import CoreLocation
 import Darwin
 import CoreData
+import GoogleMaps
+import Foundation
 class RouteHistory: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableViewObject: UITableView!
@@ -27,7 +29,7 @@ class RouteHistory: UIViewController, UITableViewDelegate {
     var routeDaterun = [String]()
     var routeCoordinates = [String]()
     var routeRunId = [String]()
-
+    var routeImage = [String]()
     struct global {
         static var tempNumber: Int?
     }
@@ -44,7 +46,7 @@ class RouteHistory: UIViewController, UITableViewDelegate {
     var verificationId:String = verificationIdTemp2.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
 
         print(verificationId)
-        var runQuery:String = "http://192.168.1.120/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
+        var runQuery:String = "http://192.168.1.119/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
         var directionsURLString = NSURL(string: runQuery)
         print(directionsURLString!)
         let data = NSData(contentsOfURL: directionsURLString!)
@@ -57,7 +59,8 @@ class RouteHistory: UIViewController, UITableViewDelegate {
         let tempDaterun = user["daterun"]! as! String
         let tempCoordinates = user["coordinates"]! as! String
         let tempRunId = user["runid"]! as! String
-            
+        let tempImageData = user["routeimage"] as! String
+            self.routeImage.append(tempImageData)
             self.routeNames.append(tempName)
             self.routeDuration.append(tempDuration)
             self.routeDistance.append(tempDistance)
@@ -121,9 +124,17 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
         var routeCount = RunInfoData.count
  
             let RunInfoForTable = RunInfoData[indexPath.row]
-            
             cell.routeName.text = RunInfoForTable.name
-        //    cell.mapImage.image = UIImage(data: RunInfoForTable.image)
+            var decodedImage = RunInfoForTable.image
+            decodedImage = decodedImage.stringByReplacingOccurrencesOfString("\"", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            decodedImage = decodedImage.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+
+            print(decodedImage)
+
+            let decodedData = NSData(base64EncodedString: decodedImage, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+            print(decodedData)
+            var decodedimage = UIImage(data: decodedData!)
+            cell.mapPreview.image = decodedimage
             cell.DetailSegue.setTitle("Info", forState: .Normal )
 
        
@@ -156,6 +167,7 @@ class mapCell:UITableViewCell {
     
    
    
+    @IBOutlet weak var mapPreview: UIImageView!
     @IBOutlet weak var routeName: UILabel!
     @IBOutlet weak var DetailSegue: UIButton!
     override func awakeFromNib() {

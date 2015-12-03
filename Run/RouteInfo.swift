@@ -37,7 +37,7 @@ class RouteInfo: UIViewController {
         let currentdata = RunInfoData[routeNumber! - 1]
         let distance = currentdata.distance as Double
         let seconds = currentdata.duration as Double
-        
+        print(currentdata)
         if distance == 0 {
             paceLabel.text = "Pace:0"
         }
@@ -78,8 +78,8 @@ class RouteInfo: UIViewController {
         var cameraPosition = mapView.cameraForBounds(camera, insets: insets)
         mapView.camera = cameraPosition
         print("\(previousRun.polyline)")
-       // var coordinates:[CLLocationCoordinate2D] = decodePolyline(previousRun.polyline)
-        
+       var coordinates:[CLLocationCoordinate2D] = decodePolyline(previousRun.polyline)!
+        print(previousRun)
         var routePolyline = GMSPolyline(path: path)
         routePolyline.map = mapView
         

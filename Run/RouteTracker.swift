@@ -95,17 +95,21 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         let savedRun = NSEntityDescription.entityForName("RunInfo",
             inManagedObjectContext: managedObjectContext)
         let runInfo = RunInfo(entity: savedRun!, insertIntoManagedObjectContext: managedObjectContext)
-        let imageData = UIImageJPEGRepresentation(screenshotOfMap, 1)
+        let imageData = UIImageJPEGRepresentation(screenshotOfMap, 0.1)
+        let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+           let decodedData = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+        print(base64String)
         let urlDateFormatter = NSDateFormatter()
         urlDateFormatter.dateFormat = "yyyy-MM-dd-H:mm"
         let dateRun = urlDateFormatter.stringFromDate(NSDate())
         
-        runInfo.image = imageData!
+        runInfo.image = base64String
         runInfo.distance = distance
         runInfo.duration = seconds
         runInfo.timestamp = dateRun
         runInfo.name = name
         runInfo.generated = false
+        runInfo.polyline = encodedPath
         // 2
         
         for location in locations {
@@ -135,11 +139,10 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         userInfoData = (try! managedObjectContext.executeFetchRequest(userRequest)) as! [User]
         var currentUser = userInfoData.removeLast()
         var loginUserId = currentUser.userid
-        let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-        print(base64String)
+        //print(base64String)
 
-        let urlPath: String = "http://192.168.1.120/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\"" + "\(encodedPath)" + "\""
-        print(urlPath)
+        let urlPath: String = "http://192.168.1.119/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\(encodedPath)" + "&routeimage=" + "\"" + "\(base64String)" + "\""
+        //print(urlPath)
         let url: NSURL = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
         let newRunRequest: NSURLRequest = NSURLRequest(URL: url)
         let connection: NSURLConnection = NSURLConnection(request: newRunRequest, delegate: self, startImmediately: true)!

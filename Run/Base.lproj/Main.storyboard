@@ -48,12 +48,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nGU-TH-k3X">
-                                        <rect key="frame" x="8" y="56" width="544" height="30"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OO-GR-JY8">
                                         <rect key="frame" x="259" y="142" width="42" height="21"/>
                                         <animations/>
@@ -115,6 +109,12 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                             <segue destination="zS5-hW-pwO" kind="showDetail" action="showViewController:sender:" id="BGy-NW-aaN"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nGU-TH-k3X">
+                                        <rect key="frame" x="8" y="56" width="544" height="30"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -447,13 +447,6 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                 <rect key="frame" x="16" y="28" width="145" height="148"/>
                                 <animations/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Calories Burnt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbr-3h-tQP">
-                                <rect key="frame" x="33" y="256" width="110" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Miles Run" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZc-gu-usK">
                                 <rect key="frame" x="209" y="256" width="76" height="21"/>
                                 <animations/>
@@ -483,7 +476,7 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Follows" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2h-Dm-xt8">
-                                <rect key="frame" x="313" y="184" width="59" height="21"/>
+                                <rect key="frame" x="329" y="188" width="59" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -534,6 +527,13 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                     <action selector="Register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Wn-Jg-Ttr"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Calories Burnt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbr-3h-tQP">
+                                <rect key="frame" x="33" y="251" width="110" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -541,8 +541,10 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                     <tabBarItem key="tabBarItem" title="Item" id="Roa-ky-Hkh"/>
                     <connections>
                         <outlet property="EmailField" destination="Q8b-pV-6wd" id="Lzd-jB-eNA"/>
+                        <outlet property="NameField" destination="3nh-2Y-hDL" id="cqH-fu-tOS"/>
                         <outlet property="PasswordField" destination="OMq-Km-Q90" id="nOc-Wb-R2z"/>
                         <outlet property="RecentRuns" destination="ngw-xO-vGx" id="BTB-tY-xff"/>
+                        <outlet property="UserImage" destination="xBI-pL-smh" id="oe8-7Z-xIb"/>
                         <outlet property="UsernameField" destination="JJp-Dq-1P4" id="k0m-Oo-V2I"/>
                     </connections>
                 </viewController>
@@ -891,13 +893,6 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                     </mask>
                                 </variation>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mile Pace:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="xqq-rv-b9x">
-                                <rect key="frame" x="40" y="256" width="146" height="68"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Minutes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUt-XT-bJS">
                                 <rect key="frame" x="513" y="256" width="80" height="30"/>
                                 <animations/>
@@ -1008,6 +1003,13 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                     <segue destination="kl2-G8-kzN" kind="show" identifier="CalculatedDistance" id="GEZ-j6-B07"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mile Pace:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="xqq-rv-b9x">
+                                <rect key="frame" x="40" y="256" width="146" height="68"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1142,19 +1144,6 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1s-5N-L3G">
-                                <rect key="frame" x="16" y="93" width="568" height="30"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.0016294276529999999" green="0.52004561589999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Generate a route">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="sR3-e7-3pB" kind="show" id="qC2-dG-bCh"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqp-AJ-wIB">
                                 <rect key="frame" x="16" y="55" width="568" height="30"/>
                                 <animations/>
@@ -1173,6 +1162,19 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1s-5N-L3G">
+                                <rect key="frame" x="16" y="93" width="568" height="30"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.0016294276529999999" green="0.52004561589999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Generate a route">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sR3-e7-3pB" kind="show" id="qC2-dG-bCh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1216,7 +1218,7 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pace" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRz-ur-QmF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Pace" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRz-ur-QmF">
                                 <rect key="frame" x="16" y="431" width="154" height="21"/>
                                 <animations/>
                                 <constraints>
@@ -1226,19 +1228,19 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCc-zs-xrA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCc-zs-xrA">
                                 <rect key="frame" x="16" y="460" width="154" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QQq-tN-TsO" customClass="GMSMapView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QQq-tN-TsO" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="68" width="600" height="332"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1K-QC-7iq" customClass="GraphView" customModule="Run" customModuleProvider="target">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h1K-QC-7iq" customClass="GraphView" customModule="Run" customModuleProvider="target">
                                 <rect key="frame" x="358" y="408" width="219" height="138"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="0.55893411640000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1254,7 +1256,7 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYo-NY-WrQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYo-NY-WrQ">
                                 <rect key="frame" x="71" y="431" width="67" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1525,7 +1527,7 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="133"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RouteName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xb-he-Fvk">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="RouteName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xb-he-Fvk">
                                                     <rect key="frame" x="136" y="8" width="91" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1542,15 +1544,26 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iqE-IL-hGp">
+                                                    <rect key="frame" x="8" y="3" width="128" height="128"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="128" id="fAt-RW-ASk"/>
+                                                        <constraint firstAttribute="height" constant="128" id="iWb-Eq-c5Q"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="dQn-cD-Bzd" secondAttribute="trailing" id="IzH-l5-lGC"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="iqE-IL-hGp" secondAttribute="leading" id="O2I-KN-8f3"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="dQn-cD-Bzd" secondAttribute="bottom" id="SUq-LM-kSK"/>
                                                 <constraint firstItem="dQn-cD-Bzd" firstAttribute="trailing" secondItem="pCG-iu-Xhd" secondAttribute="trailingMargin" id="TRB-AU-t2b"/>
                                                 <constraint firstAttribute="centerX" secondItem="dQn-cD-Bzd" secondAttribute="centerX" constant="69" id="TUc-6o-QMP"/>
                                                 <constraint firstItem="dQn-cD-Bzd" firstAttribute="top" secondItem="pCG-iu-Xhd" secondAttribute="topMargin" id="Zn1-qi-KyM"/>
+                                                <constraint firstItem="iqE-IL-hGp" firstAttribute="centerY" secondItem="pCG-iu-Xhd" secondAttribute="centerY" id="aMV-vF-JCS"/>
                                                 <constraint firstAttribute="centerY" secondItem="dQn-cD-Bzd" secondAttribute="centerY" id="ivb-rb-wGb"/>
+                                                <constraint firstItem="1xb-he-Fvk" firstAttribute="leading" secondItem="iqE-IL-hGp" secondAttribute="trailing" id="krG-mg-vDc"/>
                                                 <constraint firstAttribute="centerX" secondItem="dQn-cD-Bzd" secondAttribute="centerX" constant="-269" id="svc-cc-rtF"/>
                                                 <constraint firstItem="dQn-cD-Bzd" firstAttribute="top" secondItem="pCG-iu-Xhd" secondAttribute="topMargin" constant="40" id="t1C-uN-vd0"/>
                                             </constraints>
@@ -1568,6 +1581,7 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
                                         <animations/>
                                         <connections>
                                             <outlet property="DetailSegue" destination="dQn-cD-Bzd" id="7lw-c9-70t"/>
+                                            <outlet property="mapPreview" destination="iqE-IL-hGp" id="WEp-4N-dg1"/>
                                             <outlet property="routeName" destination="1xb-he-Fvk" id="w1f-G7-UYu"/>
                                         </connections>
                                     </tableViewCell>
@@ -1719,6 +1733,6 @@ V3JvbmcgVXNlcm5hbWUgb3IgUGFzc3dvcmQgICAQA
         <image name="runner-2" width="1024" height="641"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IIF-N6-9xj"/>
+        <segue reference="VoC-Iz-hqc"/>
     </inferredMetricsTieBreakers>
 </document>

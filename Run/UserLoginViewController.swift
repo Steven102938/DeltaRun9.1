@@ -34,8 +34,8 @@ class UserLoginViewController:UIViewController {
     @IBAction func Login(sender: AnyObject) {
         var usernameInput = UsernameField.text
         var password = PasswordField.text
-   
-        var urlPath: String = "http://192.168.1.120/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
+        clearUsers()
+        var urlPath: String = "http://192.168.1.119/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
         print(urlPath)
         if urlPath.rangeOfString(" ") == nil{
         var url: NSURL = NSURL(string: urlPath)!
@@ -129,7 +129,7 @@ class UserLoginViewController:UIViewController {
         var verificationId:String = verificationIdTemp2.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
         print(verificationId)
-        var runQuery:String = "http://192.168.1.120/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
+        var runQuery:String = "http://192.168.1.119/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
         var directionsURLString = NSURL(string: runQuery)
         print(directionsURLString!)
         let data = NSData(contentsOfURL: directionsURLString!)
@@ -143,7 +143,7 @@ class UserLoginViewController:UIViewController {
             let tempDaterun = user["daterun"]! as! String
             let tempCoordinates = user["coordinates"]! as! String
             let tempRunId = user["runid"]! as! String
-            
+            let tempImageData = user["routeimage"] as! String
             let savedRun = NSEntityDescription.entityForName("RunInfo",
                 inManagedObjectContext: managedObjectContext)
             let runInfo = RunInfo(entity: savedRun!, insertIntoManagedObjectContext: managedObjectContext)
@@ -154,6 +154,8 @@ class UserLoginViewController:UIViewController {
             runInfo.name = tempName
             runInfo.generated = false
             runInfo.polyline = tempCoordinates
+            runInfo.image = tempImageData
+            
             var error: NSError?
             let request = NSFetchRequest(entityName: "RunInfo")
             
@@ -182,22 +184,35 @@ class UserLoginViewController:UIViewController {
         // 3
        
     }
-    func clearRoutes(){
+    func clearUsers(){
         print("clearing")
-    let request = NSFetchRequest(entityName: "RunInfo")
-    var RunInfoData = (try! managedObjectContext.executeFetchRequest(request)) as! [RunInfo]
-        print(RunInfoData.count)
-        while RunInfoData.count != 0 {
-        var count:Int = RunInfoData.count
-        print("bounds")
-        self.managedObjectContext.deleteObject(RunInfoData.removeLast() as NSManagedObject)
-            print(RunInfoData.count)
+        let request = NSFetchRequest(entityName: "User")
+        var UserData = (try! managedObjectContext.executeFetchRequest(request)) as! [User]
+        print(UserData.count)
+        while UserData.count != 0 {
+            var count:Int = UserData.count
+            self.managedObjectContext.deleteObject(UserData.removeLast() as NSManagedObject)
+            print(UserData.count)
             do {
                 try self.managedObjectContext.save()
             } catch _ {
             }
         }
-    print("cleared")
+    }
+    func clearRoutes(){
+    print("clearing")
+        let request = NSFetchRequest(entityName: "RunInfo")
+        var RunInfoData = (try! managedObjectContext.executeFetchRequest(request)) as! [RunInfo]
+        print(RunInfoData.count)
+            while RunInfoData.count != 0 {
+                var count:Int = RunInfoData.count
+                self.managedObjectContext.deleteObject(RunInfoData.removeLast() as NSManagedObject)
+                print(RunInfoData.count)
+                do {
+                    try self.managedObjectContext.save()
+                } catch _ {
+                }
+            }
     }
     func keyboardWillShow(notification:NSNotification){
         let sender: [NSObject:AnyObject] = notification.userInfo!

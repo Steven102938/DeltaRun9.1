@@ -49,7 +49,9 @@ class MapOverviewViewController: UIViewController, MKMapViewDelegate, CLLocation
                         inManagedObjectContext: self.managedObjectContext)
                     let runInfo = RunInfo(entity: savedRun!, insertIntoManagedObjectContext: self.managedObjectContext)
                     let imageData = UIImageJPEGRepresentation(screenshotOfMap, 1)
-                    runInfo.image = imageData!
+                    let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+
+                    runInfo.image = base64String
                     runInfo.distance = self.totalDistanceInMeters
                     runInfo.duration = self.totalDurationInSeconds
                     runInfo.timestamp = dateRun
