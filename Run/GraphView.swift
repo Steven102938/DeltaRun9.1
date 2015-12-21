@@ -15,10 +15,10 @@ import GoogleMaps
     
     let managedObjectContext:NSManagedObjectContext? = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     var RunInfoData = [RunInfo]()
-    var speedsArray = [Double]()
+    //var speedsArray = [Double]()
     
     //This is sample data to test the graph
-    //var speedsArray:[Double] = [4, 2, 6, 4, 5, 8, 3]
+    var speedsArray:[Double] = [4, 2, 6, 4, 5, 8, 3]
 
 
     func viewDidLoad() {
@@ -53,7 +53,7 @@ import GoogleMaps
             speed = calculateSpeed(distance)
             
             distancesArray.append(distance)
-            speedsArray.append(speed)
+            //speedsArray.append(speed)
         }
         
         
