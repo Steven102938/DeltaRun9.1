@@ -15,6 +15,7 @@
 		32CF6A0B1C017B3B00DA3F89 /* Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */; };
 		32D7754C1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */; };
 		32D7754D1BE1BE1C007DA0D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754B1BE1BE1C007DA0D9 /* User.swift */; };
+		795A3B9B1C0D5909000572B5 /* SpeedsGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A3B9A1C0D5909000572B5 /* SpeedsGraphViewController.swift */; };
 		B019AD591B87A614004B1690 /* UserDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019AD581B87A614004B1690 /* UserDatabase.swift */; };
 		B01F76321B86EDA700048E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F76311B86EDA700048E53 /* AppDelegate.swift */; };
 		B01F76341B86EDA700048E53 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F76331B86EDA700048E53 /* RunViewController.swift */; };
@@ -76,6 +77,7 @@
 		32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32D7754B1BE1BE1C007DA0D9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6835750FF00AFE0C7A499782 /* libPods-Run.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Run.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		795A3B9A1C0D5909000572B5 /* SpeedsGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedsGraphViewController.swift; sourceTree = "<group>"; };
 		8376ED369107200D1BD152C7 /* Pods-Run.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Run.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Run/Pods-Run.debug.xcconfig"; sourceTree = "<group>"; };
 		B019AD581B87A614004B1690 /* UserDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDatabase.swift; sourceTree = "<group>"; };
 		B01F762C1B86EDA700048E53 /* Run.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Run.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +178,7 @@
 				B019AD581B87A614004B1690 /* UserDatabase.swift */,
 				B01F76531B86FEAE00048E53 /* RouteHistoryViewController.swift */,
 				B046E1811BB668C600E58F83 /* GraphView.swift */,
+				795A3B9A1C0D5909000572B5 /* SpeedsGraphViewController.swift */,
 				B01F76381B86EDA700048E53 /* Images.xcassets */,
 				B01F76351B86EDA700048E53 /* Main.storyboard */,
 				320A80FB1C115A7A00B10F1C /* AddFriendViewController.swift */,
@@ -392,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				326456301BF99C23007AB452 /* SignUpViewController.swift in Sources */,
+				795A3B9B1C0D5909000572B5 /* SpeedsGraphViewController.swift in Sources */,
 				B02FD2081B8EBD23003579FF /* GlobalVariables.swift in Sources */,
 				B039DB2D1BC07FBD004D0DF2 /* Run.xcdatamodeld in Sources */,
 				B02FEE231B8C15160008E9A9 /* MapOverviewViewController.swift in Sources */,
