@@ -81,7 +81,12 @@ class MapOverviewViewController: UIViewController, MKMapViewDelegate, CLLocation
                     } catch {
                         fatalError()
                     }
-          
+                    
+                    
+                
+
+                
+
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -247,6 +252,9 @@ class MapOverviewViewController: UIViewController, MKMapViewDelegate, CLLocation
                     }
                 })
         
+        
+    
+        
     }
     
     
@@ -272,7 +280,10 @@ class MapOverviewViewController: UIViewController, MKMapViewDelegate, CLLocation
     destinationMarker.title = "end"
         
        
-            }
+        
+        
+
+    }
     
     func drawRoute() {
         let route = self.overviewPolyline["points"] as! String
