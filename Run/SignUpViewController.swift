@@ -89,7 +89,7 @@ class SignUpViewController: UIViewController {
 //            }
             
                         print(birthdate)
-                        let urlPath: String = "http://192.168.1.123/registeruser.php?name=" + "\(username!)" + "&password=" + "\(password!)" + "&email=" + "\(email!)" + "&firstname=" + "\(firstname!)" + "&lastname=" + "\(lastname!)" + "&birthdate=" + "\(birthdate!)"
+                        let urlPath: String = "http://192.168.1.133/registeruser.php?name=" + "\(username!)" + "&password=" + "\(password!)" + "&email=" + "\(email!)" + "&firstname=" + "\(firstname!)" + "&lastname=" + "\(lastname!)" + "&birthdate=" + "\(birthdate!)"
                         print(urlPath)
                         let url: NSURL = NSURL(string: urlPath)!
                         let request: NSURLRequest = NSURLRequest(URL: url)

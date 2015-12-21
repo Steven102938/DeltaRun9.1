@@ -600,7 +600,7 @@ class MapOverviewViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
         
     }

@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		320A80FA1C11341D00B10F1C /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A80F91C11341D00B10F1C /* FriendsViewController.swift */; };
+		320A80FC1C115A7A00B10F1C /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A80FB1C115A7A00B10F1C /* AddFriendViewController.swift */; };
 		324EECA01BDCAE00000DA7D9 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */; };
 		326456301BF99C23007AB452 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3264562F1BF99C23007AB452 /* SignUpViewController.swift */; };
+		3279AA4F1C269F04005AFA2C /* RunInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3279AA4E1C269F04005AFA2C /* RunInfo+CoreDataProperties.swift */; };
 		32CF6A0B1C017B3B00DA3F89 /* Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */; };
 		32D7754C1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */; };
 		32D7754D1BE1BE1C007DA0D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754B1BE1BE1C007DA0D9 /* User.swift */; };
@@ -64,8 +67,11 @@
 /* Begin PBXFileReference section */
 		174782AD07D4857A6EFCAA2B /* Pods-Run.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Run.release.xcconfig"; path = "Pods/Target Support Files/Pods-Run/Pods-Run.release.xcconfig"; sourceTree = "<group>"; };
 		3209F61A1BF44CF800F7AF35 /* Run-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Run-Bridging-Header.h"; sourceTree = "<group>"; };
+		320A80F91C11341D00B10F1C /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		320A80FB1C115A7A00B10F1C /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		3264562F1BF99C23007AB452 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3279AA4E1C269F04005AFA2C /* RunInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RunInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polyline.swift; sourceTree = "<group>"; };
 		32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32D7754B1BE1BE1C007DA0D9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -172,6 +178,8 @@
 				B046E1811BB668C600E58F83 /* GraphView.swift */,
 				B01F76381B86EDA700048E53 /* Images.xcassets */,
 				B01F76351B86EDA700048E53 /* Main.storyboard */,
+				320A80FB1C115A7A00B10F1C /* AddFriendViewController.swift */,
+				320A80F91C11341D00B10F1C /* FriendsViewController.swift */,
 				B01F76311B86EDA700048E53 /* AppDelegate.swift */,
 				B039DB2B1BC07FBD004D0DF2 /* Run.xcdatamodeld */,
 				3209F61A1BF44CF800F7AF35 /* Run-Bridging-Header.h */,
@@ -211,6 +219,7 @@
 		B05055471BBB98D000590577 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3279AA4E1C269F04005AFA2C /* RunInfo+CoreDataProperties.swift */,
 				32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */,
 				32D7754B1BE1BE1C007DA0D9 /* User.swift */,
 				B037EEA61BC74C7900A48748 /* RunInfo.swift */,
@@ -388,7 +397,9 @@
 				B02FEE231B8C15160008E9A9 /* MapOverviewViewController.swift in Sources */,
 				B03A93DC1BC62DDF0057A978 /* MulticolorPolylineSegment.swift in Sources */,
 				B01F76341B86EDA700048E53 /* RunViewController.swift in Sources */,
+				320A80FA1C11341D00B10F1C /* FriendsViewController.swift in Sources */,
 				B034DF451BD5B97D000D4BFE /* UserViewController.swift in Sources */,
+				320A80FC1C115A7A00B10F1C /* AddFriendViewController.swift in Sources */,
 				B019AD591B87A614004B1690 /* UserDatabase.swift in Sources */,
 				B01F76541B86FEAE00048E53 /* RouteHistoryViewController.swift in Sources */,
 				32D7754D1BE1BE1C007DA0D9 /* User.swift in Sources */,
@@ -402,6 +413,7 @@
 				B037B97F1BAFA24300209D75 /* RouteGenerateNavigation.swift in Sources */,
 				32CF6A0B1C017B3B00DA3F89 /* Polyline.swift in Sources */,
 				B0504C781BA11B2500745B80 /* DirectionsViewController.swift in Sources */,
+				3279AA4F1C269F04005AFA2C /* RunInfo+CoreDataProperties.swift in Sources */,
 				B01F76321B86EDA700048E53 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

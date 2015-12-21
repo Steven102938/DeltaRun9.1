@@ -13,10 +13,11 @@ import Foundation
 import CoreData
 
 extension User {
-
+    @NSManaged var name: String?
     @NSManaged var password: String?
     @NSManaged var userid: NSNumber?
     @NSManaged var username: String?
     @NSManaged var verificationid: String?
+    @NSManaged var friends: String
 
 }

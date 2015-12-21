@@ -19,6 +19,7 @@ class RunInfo: NSManagedObject {
     @NSManaged var locations: NSOrderedSet
     @NSManaged var generated: Bool
     @NSManaged var polyline: String
+    @NSManaged var runid: NSNumber
 
 }
 extension RunInfo {

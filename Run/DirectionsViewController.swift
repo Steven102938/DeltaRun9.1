@@ -66,7 +66,7 @@ class DirectionsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
         
         

@@ -20,7 +20,6 @@ class UserLoginViewController:UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
    
     var keyboardInt:Int?
-    var Baseurl = Firebase(url: "https://blazing-torch-6156.firebaseio.com")
     var userid:Int?
     var username:String?
     var email:String?
@@ -35,7 +34,7 @@ class UserLoginViewController:UIViewController {
         var usernameInput = UsernameField.text
         var password = PasswordField.text
         clearUsers()
-        var urlPath: String = "http://192.168.1.119/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
+        var urlPath: String = "http://192.168.1.133/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
         print(urlPath)
         if urlPath.rangeOfString(" ") == nil{
         var url: NSURL = NSURL(string: urlPath)!
@@ -47,21 +46,23 @@ class UserLoginViewController:UIViewController {
         print(dictionary)
         for data in dictionary{
             if let useridLoop = data["userid"] {
-            let verificationid = data["verificationid"]!
-            let useridTemp = useridLoop as! String
-            print(useridTemp)
-            var useridTemp2:Int = Int("\(useridTemp)")!
-            var useridFetch:NSNumber = NSNumber(integer: useridTemp2)
-            var verificationIdFetch:String = "\(verificationid!)"
+            let verificationid = data["verificationid"]! as! String
+            let firstName = data["firstname"]! as! String
+            let lastName =  data["lastname"]! as! String
+            let tempFriendString = data["friends"] as! String
+            let useridTemp = data["userid"]!!.integerValue
                 
             let loginUser = NSEntityDescription.entityForName("User",
                 inManagedObjectContext: managedObjectContext)
             let loginInfo = User(entity: loginUser!, insertIntoManagedObjectContext: managedObjectContext)
-            loginInfo.userid = useridFetch
+            loginInfo.userid = useridTemp
+            loginInfo.name = firstName + " " + lastName
             loginInfo.username = usernameInput
             loginInfo.password = password
-            loginInfo.verificationid = verificationIdFetch
-                print(verificationIdFetch)
+            loginInfo.verificationid = verificationid
+                print(tempFriendString)
+            loginInfo.friends = tempFriendString
+
             var error: NSError?
             
             do {
@@ -69,7 +70,7 @@ class UserLoginViewController:UIViewController {
                 FindRoutes()
 
             } catch  {
-                let nserror = error as NSError
+                let nserror = error as! NSError
                 abort()
             }
                 let SegueName = "LoginSegue"
@@ -129,7 +130,7 @@ class UserLoginViewController:UIViewController {
         var verificationId:String = verificationIdTemp2.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
         print(verificationId)
-        var runQuery:String = "http://192.168.1.119/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
+        var runQuery:String = "http://192.168.1.133/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
         var directionsURLString = NSURL(string: runQuery)
         print(directionsURLString!)
         let data = NSData(contentsOfURL: directionsURLString!)
@@ -142,7 +143,7 @@ class UserLoginViewController:UIViewController {
             let tempDistance = user["distance"]!!.doubleValue
             let tempDaterun = user["daterun"]! as! String
             let tempCoordinates = user["coordinates"]! as! String
-            let tempRunId = user["runid"]! as! String
+            let tempRunId = user["runid"]!!.integerValue
             let tempImageData = user["routeimage"] as! String
             let savedRun = NSEntityDescription.entityForName("RunInfo",
                 inManagedObjectContext: managedObjectContext)
@@ -155,7 +156,7 @@ class UserLoginViewController:UIViewController {
             runInfo.generated = false
             runInfo.polyline = tempCoordinates
             runInfo.image = tempImageData
-            
+            runInfo.runid = tempRunId
             var error: NSError?
             let request = NSFetchRequest(entityName: "RunInfo")
             

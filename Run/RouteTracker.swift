@@ -78,6 +78,9 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
             locationarray.append(location.coordinate)
         }
         print(locationarray)
+        var firstCoordinate = locationarray.removeFirst()
+        var firstLatitude = firstCoordinate.latitude
+        var firstLongitude = firstCoordinate.longitude
         var encodedPath:String = encodeCoordinates(locationarray)
         var decoded:[CLLocationCoordinate2D] = decodePolyline(encodedPath)!
         print(decoded)
@@ -141,8 +144,8 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         var loginUserId = currentUser.userid
         //print(base64String)
 
-        let urlPath: String = "http://192.168.1.119/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\(encodedPath)" + "&routeimage=" + "\"" + "\(base64String)" + "\""
-        //print(urlPath)
+        let urlPath: String = "http://192.168.1.133/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\(encodedPath)" + "&routeimage=" + "\"" + "\(base64String)" + "\"" + "&firstlatitude=" + "\(firstLatitude)" + "&firstlongitude=" + "\(firstLongitude)"
+        print(urlPath)
         let url: NSURL = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
         let newRunRequest: NSURLRequest = NSURLRequest(URL: url)
         let connection: NSURLConnection = NSURLConnection(request: newRunRequest, delegate: self, startImmediately: true)!
@@ -274,7 +277,7 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.activityType = .Fitness
-        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
         MapTracker.myLocationEnabled = true
         
         promptLabel.hidden = false
