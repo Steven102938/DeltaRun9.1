@@ -19,7 +19,7 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
     var didFindMyLocation = false
     var managedObjectContext: NSManagedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     var RunInfoData = [RunInfo]()
-
+    var Tracking = false
 
 
     @IBOutlet weak var MapTracker: GMSMapView!
@@ -35,9 +35,10 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var staticLabelFour: UILabel!
     
     @IBAction func StartTrack(sender: AnyObject) {
+        Tracking = true
+
         startButton.hidden = true
         promptLabel.hidden = true
-        
         timeLabel.hidden = false
         distanceLabel.hidden = false
         paceLabel.hidden = false
@@ -51,7 +52,7 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         distance = 0.0
         locations.removeAll(keepCapacity: false)
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "eachSecond:", userInfo: nil, repeats: true)
-        startLocationUpdates()
+        locationManager.startUpdatingLocation()
         
     }
 //    @IBAction func stopPressed(sender: AnyObject) {
@@ -142,9 +143,10 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         userInfoData = (try! managedObjectContext.executeFetchRequest(userRequest)) as! [User]
         var currentUser = userInfoData.removeLast()
         var loginUserId = currentUser.userid
+        var Username = currentUser.username
         //print(base64String)
 
-        let urlPath: String = "http://192.168.1.133/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\(encodedPath)" + "&routeimage=" + "\"" + "\(base64String)" + "\"" + "&firstlatitude=" + "\(firstLatitude)" + "&firstlongitude=" + "\(firstLongitude)"
+        let urlPath: String = "http://abominable.science/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\(encodedPath)" + "&routeimage=" + "\"" + "\(base64String)" + "\"" + "&firstlatitude=" + "\(firstLatitude)" + "&firstlongitude=" + "\(firstLongitude)" + "&runby=" + "\(Username!)"
         print(urlPath)
         let url: NSURL = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
         let newRunRequest: NSURLRequest = NSURLRequest(URL: url)
@@ -214,10 +216,7 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         }
     }
         
-    func startLocationUpdates() {
-        // Here, the location manager will be lazily instantiated
-        locationManager.startUpdatingLocation()
-    }
+   
     
     @IBAction func SaveRoute(sender: AnyObject) {
         var names:String?
@@ -276,9 +275,9 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.activityType = .Fitness
         self.locationManager.requestWhenInUseAuthorization()
         MapTracker.myLocationEnabled = true
+        self.locationManager.requestLocation()
         
         promptLabel.hidden = false
         timeLabel.hidden = true
@@ -302,14 +301,15 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         }
        
     }
-  
-}
-// MARK: - MKMapViewDelegate
+    func locationManager(manager: CLLocationManager, var didUpdateLocations locations: [CLLocation]) {
+        if Tracking == false {
+            var locationUpdate = manager.location!.coordinate
+            MapTracker.camera = GMSCameraPosition.cameraWithTarget(locationUpdate , zoom: 10.0)
+            MapTracker.settings.myLocationButton = true
+            
 
-
-// MARK: - CLLocationManagerDelegate
-extension RouteTracker {
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        }
+        else{
         for location in locations {
             let howRecent = location.timestamp.timeIntervalSinceNow
             var path = GMSMutablePath()
@@ -322,16 +322,16 @@ extension RouteTracker {
                     coords.append(location.coordinate)
                     print(location)
                     for coordinate in coords{
-                    path.addCoordinate(coordinate)
+                        path.addCoordinate(coordinate)
                         var polyline = GMSPolyline(path: path)
-
-                    polyline.strokeWidth = 5.0
-                    polyline.strokeColor = UIColor.blueColor()
-                    polyline.map = MapTracker
+                        
+                        polyline.strokeWidth = 5.0
+                        polyline.strokeColor = UIColor.blueColor()
+                        polyline.map = MapTracker
                         var camera: GMSCameraPosition = GMSCameraPosition.cameraWithTarget(coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
                         MapTracker.camera = camera
-
-
+                        
+                        
                     }
                 }
                 
@@ -339,8 +339,50 @@ extension RouteTracker {
                 self.locations.append(location)
             }
         }
+        }
     }
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
+    }
+  
 }
+// MARK: - MKMapViewDelegate
+
+
+// MARK: - CLLocationManagerDelegate
+//extension RouteTracker {
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        for location in locations {
+//            let howRecent = location.timestamp.timeIntervalSinceNow
+//            var path = GMSMutablePath()
+//            if abs(howRecent) < 10 && location.horizontalAccuracy < 20 {
+//                //update distance
+//                if self.locations.count > 0 {
+//                    distance += location.distanceFromLocation(self.locations.last!)
+//                    var coords = [CLLocationCoordinate2D]()
+//                    coords.append(self.locations.last!.coordinate)
+//                    coords.append(location.coordinate)
+//                    print(location)
+//                    for coordinate in coords{
+//                    path.addCoordinate(coordinate)
+//                        var polyline = GMSPolyline(path: path)
+//
+//                    polyline.strokeWidth = 5.0
+//                    polyline.strokeColor = UIColor.blueColor()
+//                    polyline.map = MapTracker
+//                        var camera: GMSCameraPosition = GMSCameraPosition.cameraWithTarget(coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+//                        MapTracker.camera = camera
+//
+//
+//                    }
+//                }
+//                
+//                //save location
+//                self.locations.append(location)
+//            }
+//        }
+//    }
+//}
 
 // MARK: - UIActionSheetDelegate
 //extension RouteTracker: UIActionSheetDelegate {

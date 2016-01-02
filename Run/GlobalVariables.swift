@@ -21,7 +21,8 @@ class Main {
     var directionLocFour: CLLocationCoordinate2D
     var routeInfo: Dictionary<NSObject, AnyObject>!
     var routeNumber: Int?
-    init(TempDistanceToRun:Double, TempDirectionLocOne: CLLocationCoordinate2D, TempDirectionLocTwo: CLLocationCoordinate2D, TempDirectionLocThree: CLLocationCoordinate2D, TempDirectionLocFour: CLLocationCoordinate2D, TempRouteInfo: Dictionary<NSObject, AnyObject>, TempRouteNumber:Int) {
+    var tableType: String?
+    init(TempDistanceToRun:Double, TempDirectionLocOne: CLLocationCoordinate2D, TempDirectionLocTwo: CLLocationCoordinate2D, TempDirectionLocThree: CLLocationCoordinate2D, TempDirectionLocFour: CLLocationCoordinate2D, TempRouteInfo: Dictionary<NSObject, AnyObject>, TempRouteNumber:Int, TempTableType:String) {
      self.GlobalDistanceToRun = TempDistanceToRun
         self.directionLocOne = TempDirectionLocOne
         self.directionLocTwo = TempDirectionLocTwo
@@ -29,10 +30,11 @@ class Main {
         self.directionLocFour = TempDirectionLocFour
         self.routeInfo = TempRouteInfo
         self.routeNumber = TempRouteNumber
+        self.tableType = TempTableType
     }
 }
 var defaultDirectionLoc = CLLocationCoordinate2DMake(0,0)
 var defaultDictionary = [:]
 var defaultNumber = 1
-
-var mainInstance = Main(TempDistanceToRun: 0, TempDirectionLocOne: defaultDirectionLoc, TempDirectionLocTwo: defaultDirectionLoc, TempDirectionLocThree: defaultDirectionLoc, TempDirectionLocFour: defaultDirectionLoc, TempRouteInfo: defaultDictionary as! Dictionary<NSObject, AnyObject>, TempRouteNumber: defaultNumber)
+var defaultTableType = "RunInfo"
+var mainInstance = Main(TempDistanceToRun: 0, TempDirectionLocOne: defaultDirectionLoc, TempDirectionLocTwo: defaultDirectionLoc, TempDirectionLocThree: defaultDirectionLoc, TempDirectionLocFour: defaultDirectionLoc, TempRouteInfo: defaultDictionary as! Dictionary<NSObject, AnyObject>, TempRouteNumber: defaultNumber, TempTableType:defaultTableType)

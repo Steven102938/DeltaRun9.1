@@ -47,7 +47,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate  {
         friendString = currentUser.friends
         friendArray = friendString!.characters.split{$0 == " "}.map(String.init)
         var webFriendString = friendString!.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        var userIdQuery:String = "http://192.168.1.133/useridquery.php?userid=" + "\(webFriendString)"
+        var userIdQuery:String = "http://abominable.science/useridquery.php?userid=" + "\(webFriendString)"
         print(userIdQuery)
         var userURLString = NSURL(string: userIdQuery)
         if userURLString != nil {

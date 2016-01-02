@@ -25,21 +25,33 @@ class RouteHistory: UIViewController, UITableViewDelegate, CLLocationManagerDele
     var RunInfoData = [RunInfo]()
     var deleteRouteIndexPath: NSIndexPath? = nil
     var RunInfoSegue = "RunInfo"
-    var tableViewType = "Coredata"
+    var tableViewType = "RunInfo"
     var routeNames = [String]()
     var routeDuration = [Int]()
-    var routeDistance = [Int]()
+    var routeDistance = [Double]()
     var routeDaterun = [String]()
     var routeCoordinates = [String]()
-    var routeRunId = [String]()
+    var routeRunId = [Int]()
     var routeImage = [String]()
+    
     var nearbyRouteNames = [String]()
     var nearbyRouteDuration = [Int]()
-    var nearbyRouteDistance = [Int]()
+    var nearbyRouteDistance = [Double]()
     var nearbyRouteDaterun = [String]()
     var nearbyRouteCoordinates = [String]()
-    var nearbyRouteRunId = [String]()
+    var nearbyRouteRunId = [Int]()
     var nearbyRouteImage = [String]()
+    var nearbyRunBy = [String]()
+    
+    var friendRunBy = [String]()
+    var friendRouteNames = [String]()
+    var friendRouteDuration = [Int]()
+    var friendRouteDistance = [Double]()
+    var friendRouteDaterun = [String]()
+    var friendRouteCoordinates = [String]()
+    var friendRouteRunId = [Int]()
+    var friendRouteImage = [String]()
+    
     let locationManager = CLLocationManager()
     var loadCoordinates:CLLocationCoordinate2D?
     struct global {
@@ -62,7 +74,7 @@ class RouteHistory: UIViewController, UITableViewDelegate, CLLocationManagerDele
     var verificationId:String = verificationIdTemp2.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
 
         print(verificationId)
-        var runQuery:String = "http://192.168.1.133/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
+        var runQuery:String = "http://abominable.science/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
         var directionsURLString = NSURL(string: runQuery)
         print(directionsURLString!)
         let data = NSData(contentsOfURL: directionsURLString!)
@@ -71,10 +83,10 @@ class RouteHistory: UIViewController, UITableViewDelegate, CLLocationManagerDele
         for run in dictionary{
         let tempName = run["name"]! as! String
         let tempDuration = run["duration"]!!.integerValue
-        let tempDistance = run["distance"]!!.integerValue
+        let tempDistance = run["distance"]!!.doubleValue
         let tempDaterun = run["daterun"]! as! String
         let tempCoordinates = run["coordinates"]! as! String
-        let tempRunId = run["runid"]! as! String
+        let tempRunId = run["runid"]!!.integerValue
         let tempImageData = run["routeimage"] as! String
             self.routeImage.append(tempImageData)
             self.routeNames.append(tempName)
@@ -95,7 +107,7 @@ class RouteHistory: UIViewController, UITableViewDelegate, CLLocationManagerDele
         {
         case 0:
             print("1")
-            tableViewType = "Coredata"
+            tableViewType = "RunInfo"
             tableViewObject.reloadData()
             tableViewObject.reloadInputViews()
             //show popular view
@@ -108,15 +120,27 @@ class RouteHistory: UIViewController, UITableViewDelegate, CLLocationManagerDele
             self.nearbyRouteDaterun.removeAll()
             self.nearbyRouteCoordinates.removeAll()
             self.nearbyRouteRunId.removeAll()
-           
+            self.nearbyRunBy.removeAll()
             print("2")
-            tableViewType = "nearby"
+            tableViewType = "NearbyRuns"
             loadNearbyRuns()
             tableViewObject.reloadData()
             tableViewObject.reloadInputViews()
             //show history view
         case 2:
             print("3")
+            self.friendRouteImage.removeAll()
+            self.friendRouteNames.removeAll()
+            self.friendRouteDuration.removeAll()
+            self.friendRouteDistance.removeAll()
+            self.friendRouteDaterun.removeAll()
+            self.friendRouteCoordinates.removeAll()
+            self.friendRouteRunId.removeAll()
+            self.friendRunBy.removeAll()
+            tableViewType = "FriendRuns"
+            loadFriendRuns()
+            tableViewObject.reloadData()
+            tableViewObject.reloadInputViews()
         default:
             break;
         }
@@ -150,7 +174,7 @@ class RouteHistory: UIViewController, UITableViewDelegate, CLLocationManagerDele
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if tableViewType == "Coredata" {
+        if tableViewType == "RunInfo" {
         var error: NSError?
         let request = NSFetchRequest(entityName: "RunInfo")
         RunInfoData = (try! managedObjectContext?.executeFetchRequest(request)) as! [RunInfo]
@@ -164,7 +188,7 @@ class RouteHistory: UIViewController, UITableViewDelegate, CLLocationManagerDele
     
 func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> mapCell
         {
-            if tableViewType == "Coredata" {
+            if tableViewType == "RunInfo" {
         let identifier:String = "MapReuse"
         let cell:mapCell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! mapCell
         var error: NSError?
@@ -183,17 +207,17 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
             var decodedimage = UIImage(data: decodedData!)
             cell.mapPreview.image = decodedimage
             cell.DetailSegue.setTitle("Info", forState: .Normal )
-
+            cell.runByLabel.hidden = true
        
            cell.DetailSegue.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
         
  
         return cell
             }
-            else{
+            if tableViewType == "NearbyRuns"{
                 let identifier:String = "MapReuse"
                 let cell:mapCell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! mapCell
-                               cell.routeName.text = nearbyRouteNames[indexPath.row]
+                cell.routeName.text = nearbyRouteNames[indexPath.row]
                 var decodedImage = nearbyRouteImage[indexPath.row]
                 decodedImage = decodedImage.stringByReplacingOccurrencesOfString("\"", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
                 decodedImage = decodedImage.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
@@ -203,17 +227,136 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
                 cell.mapPreview.image = decodedimage
                 cell.DetailSegue.setTitle("Info", forState: .Normal )
                 cell.DetailSegue.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-                
+                cell.runByLabel.text = nearbyRunBy[indexPath.row]
+
                 return cell
                 
             }
+            if tableViewType == "FriendRuns"{
+                let identifier:String = "MapReuse"
+                let cell:mapCell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! mapCell
+                if friendRouteNames.isEmpty {
+                    let identifier:String = "MapReuse"
+                    let cell:mapCell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! mapCell
+                    return cell
+                    print("empty")
+                }
+                else{
+                    print("stuff")
+                cell.routeName.text = friendRouteNames[indexPath.row]
+                var decodedImage = friendRouteImage[indexPath.row]
+                decodedImage = decodedImage.stringByReplacingOccurrencesOfString("\"", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                decodedImage = decodedImage.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                
+                let decodedData = NSData(base64EncodedString: decodedImage, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                var decodedimage = UIImage(data: decodedData!)
+                cell.mapPreview.image = decodedimage
+                cell.DetailSegue.setTitle("Info", forState: .Normal )
+                cell.DetailSegue.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
+                cell.runByLabel.text = friendRunBy[indexPath.row]
+                return cell
+                }
+            }
+            else{
+                print("broken")
+                let identifier:String = "MapReuse"
+                let cell:mapCell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! mapCell
+                return cell
+            }
+    }
+    func loadFriendRuns() {
+        
+        let request = NSFetchRequest(entityName: "FriendRuns")
+        var UserData = (try! managedObjectContext!.executeFetchRequest(request)) as! [FriendRuns]
+        print(UserData.count)
+        while UserData.count != 0 {
+            var count:Int = UserData.count
+            self.managedObjectContext!.deleteObject(UserData.removeLast() as NSManagedObject)
+            print(UserData.count)
+            do {
+                try self.managedObjectContext!.save()
+            } catch _ {
+            }
+        }
+        
+        let userRequest = NSFetchRequest(entityName: "User")
+        var userInfoData = (try! managedObjectContext!.executeFetchRequest(userRequest)) as! [User]
+        var currentUser = userInfoData.removeLast()
+        var friendString = currentUser.friends
+        
+          var friendQuery:String = "http://abominable.science/friendrunquery.php?userid=" + "\(friendString)"
+        print(friendQuery)
+        var friendQueryWeb = friendQuery.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
+
+        var directionsURLString = NSURL(string: friendQueryWeb)
+        print(directionsURLString!)
+        let data = NSData(contentsOfURL: directionsURLString!)
+        let dictionary: NSMutableArray = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSMutableArray
+        for run in dictionary{
+            let tempName = run["name"]! as! String
+            let tempDuration = run["duration"]!!.integerValue
+            let tempDistance = run["distance"]!!.doubleValue
+            let tempDaterun = run["daterun"]! as! String
+            let tempCoordinates = run["coordinates"]! as! String
+            let tempRunId = run["runid"]!!.integerValue
+            let tempImageData = run["routeimage"] as! String
+            let tempRunBy = run["runby"] as! String
+            
+            self.friendRunBy.append(tempRunBy)
+            self.friendRouteImage.append(tempImageData)
+            self.friendRouteNames.append(tempName)
+            self.friendRouteDuration.append(tempDuration)
+            self.friendRouteDistance.append(tempDistance)
+            self.friendRouteDaterun.append(tempDaterun)
+            self.friendRouteCoordinates.append(tempCoordinates)
+            self.friendRouteRunId.append(tempRunId)
+            
+            let savedRun = NSEntityDescription.entityForName("FriendRuns",
+                inManagedObjectContext: managedObjectContext!)
+            let FriendRun = FriendRuns(entity: savedRun!, insertIntoManagedObjectContext: managedObjectContext)
+            
+            FriendRun.friendrunby = tempRunBy
+            FriendRun.friendimage = tempImageData
+            FriendRun.frienddistance = tempDistance
+            FriendRun.friendduration = tempDuration
+            FriendRun.friendname = tempName
+            FriendRun.friendpolyline = tempCoordinates
+            FriendRun.friendrunid = tempRunId
+            FriendRun.friendtimestamp = tempDaterun
+            
+            var error: NSError?
+            let request = NSFetchRequest(entityName: "FriendRuns")
+            
+            do {
+                try managedObjectContext!.save()
+            } catch var error1 as NSError {
+                error = error1
+            }
+
+    }
     }
     func loadNearbyRuns() {
+        
+            let request = NSFetchRequest(entityName: "NearbyRuns")
+            var UserData = (try! managedObjectContext!.executeFetchRequest(request)) as! [NearbyRuns]
+            print(UserData.count)
+            while UserData.count != 0 {
+                var count:Int = UserData.count
+                self.managedObjectContext!.deleteObject(UserData.removeLast() as NSManagedObject)
+                print(UserData.count)
+                do {
+                    try self.managedObjectContext!.save()
+                } catch _ {
+                }
+            }
+        
+        
         var searchRange = 1
         var arrayInt:[Double] = [0.5/138,1/138,2/138,5/138]
         var originlatitude = loadCoordinates?.latitude
         var originlongitude = loadCoordinates?.longitude
-        var nearbyQuery:String = "http://192.168.1.133/nearbyquery.php?latituderangeone=" + "\(originlatitude! - arrayInt[searchRange])" + "&latituderangetwo=" + "\(originlatitude! + arrayInt[searchRange])" + "&longituderangeone=" + "\(originlongitude! - arrayInt[searchRange])" + "&longituderangetwo=" + "\(originlongitude! + arrayInt[searchRange])"
+    if nearbyRouteRunId.count <= 10 && searchRange <= 4{
+        var nearbyQuery:String = "http://abominable.science/nearbyquery.php?latituderangeone=" + "\(originlatitude! - arrayInt[searchRange])" + "&latituderangetwo=" + "\(originlatitude! + arrayInt[searchRange])" + "&longituderangeone=" + "\(originlongitude! - arrayInt[searchRange])" + "&longituderangetwo=" + "\(originlongitude! + arrayInt[searchRange])"
         print(nearbyQuery)
         var directionsURLString = NSURL(string: nearbyQuery)
         print(directionsURLString!)
@@ -223,11 +366,18 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
         for run in dictionary{
             let tempName = run["name"]! as! String
             let tempDuration = run["duration"]!!.integerValue
-            let tempDistance = run["distance"]!!.integerValue
+            let tempDistance = run["distance"]!!.doubleValue
             let tempDaterun = run["daterun"]! as! String
             let tempCoordinates = run["coordinates"]! as! String
-            let tempRunId = run["runid"]! as! String
+            let tempRunId = run["runid"]!!.integerValue
             let tempImageData = run["routeimage"] as! String
+            let tempRunBy = run["runby"] as! String
+            if routeRunId.contains(tempRunId) {
+                
+            }
+            
+            else{
+                print("doesnotinfringe" + "\(tempDuration)")
             self.nearbyRouteImage.append(tempImageData)
             self.nearbyRouteNames.append(tempName)
             self.nearbyRouteDuration.append(tempDuration)
@@ -235,13 +385,50 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
             self.nearbyRouteDaterun.append(tempDaterun)
             self.nearbyRouteCoordinates.append(tempCoordinates)
             self.nearbyRouteRunId.append(tempRunId)
-        }
-        for nearbyRoute in routeRunId{
-            if nearbyRouteRunId.contains(nearbyRoute){
-                print("match")
-               nearbyRouteRunId = nearbyRouteRunId.filter(){ $0 != nearbyRoute }
+            self.nearbyRunBy.append(tempRunBy)
+                
+            let savedRun = NSEntityDescription.entityForName("NearbyRuns",
+                inManagedObjectContext: managedObjectContext!)
+            let nearbyRun = NearbyRuns(entity: savedRun!, insertIntoManagedObjectContext: managedObjectContext)
+            
+            nearbyRun.nearbyimage = tempImageData
+            nearbyRun.nearbydistance = tempDistance
+            nearbyRun.nearbyduration = tempDuration
+            nearbyRun.nearbyname = tempName
+            nearbyRun.nearbypolyline = tempCoordinates
+            nearbyRun.nearbyrunid = tempRunId
+            nearbyRun.nearbytimestamp = tempDaterun
+            nearbyRun.nearbyrunby = tempRunBy
+            var error: NSError?
+            let request = NSFetchRequest(entityName: "NearbyRuns")
+            
+            do {
+                try managedObjectContext!.save()
+            } catch var error1 as NSError {
+                error = error1
+            }
+            searchRange++
+            }
             }
         }
+//        for nearbyRoute in routeRunId{
+//            print(nearbyRoute)
+//            print(nearbyRouteRunId)
+//            if nearbyRouteRunId.contains(nearbyRoute){
+//                print("match")
+//                print(nearbyRoute)
+//                var placeInArray = nearbyRouteRunId.indexOf(nearbyRoute)
+//                nearbyRouteRunId = nearbyRouteRunId.filter(){ $0 != nearbyRoute }
+//                nearbyRouteCoordinates.removeAtIndex(placeInArray!)
+//                nearbyRouteDaterun.removeAtIndex(placeInArray!)
+//                nearbyRouteDistance.removeAtIndex(placeInArray!)
+//                nearbyRouteDuration.removeAtIndex(placeInArray!)
+//                nearbyRouteNames.removeAtIndex(placeInArray!)
+//                nearbyRouteImage.removeAtIndex(placeInArray!)
+//                print(nearbyRouteRunId)
+//
+//            }
+//        }
     }
     func locationManager(manager: CLLocationManager, var didUpdateLocations locations: [CLLocation]) {
         print(locations)
@@ -261,6 +448,7 @@ func pressed(sender: UIButton!) {
     
     print(row)
     mainInstance.routeNumber = row! + 1
+    mainInstance.tableType = self.tableViewType
     self.performSegueWithIdentifier(RunInfoSegue, sender: nil)
 
         print("yourButton was pressed")
@@ -272,7 +460,7 @@ func pressed(sender: UIButton!) {
 class mapCell:UITableViewCell {
     
    
-   
+    @IBOutlet weak var runByLabel: UILabel!
     @IBOutlet weak var mapPreview: UIImageView!
     @IBOutlet weak var routeName: UILabel!
     @IBOutlet weak var DetailSegue: UIButton!

@@ -11,7 +11,10 @@
 		320A80FC1C115A7A00B10F1C /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A80FB1C115A7A00B10F1C /* AddFriendViewController.swift */; };
 		324EECA01BDCAE00000DA7D9 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */; };
 		326456301BF99C23007AB452 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3264562F1BF99C23007AB452 /* SignUpViewController.swift */; };
-		3279AA4F1C269F04005AFA2C /* RunInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3279AA4E1C269F04005AFA2C /* RunInfo+CoreDataProperties.swift */; };
+		32C055281C2A4CB10072CE27 /* NearbyRuns+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C055261C2A4CB10072CE27 /* NearbyRuns+CoreDataProperties.swift */; };
+		32C055291C2A4CB10072CE27 /* NearbyRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C055271C2A4CB10072CE27 /* NearbyRuns.swift */; };
+		32C0552C1C2A775D0072CE27 /* FriendRuns+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0552A1C2A775D0072CE27 /* FriendRuns+CoreDataProperties.swift */; };
+		32C0552D1C2A775D0072CE27 /* FriendRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0552B1C2A775D0072CE27 /* FriendRuns.swift */; };
 		32CF6A0B1C017B3B00DA3F89 /* Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */; };
 		32D7754C1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */; };
 		32D7754D1BE1BE1C007DA0D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754B1BE1BE1C007DA0D9 /* User.swift */; };
@@ -71,7 +74,10 @@
 		320A80FB1C115A7A00B10F1C /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		3264562F1BF99C23007AB452 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		3279AA4E1C269F04005AFA2C /* RunInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RunInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		32C055261C2A4CB10072CE27 /* NearbyRuns+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NearbyRuns+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		32C055271C2A4CB10072CE27 /* NearbyRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyRuns.swift; sourceTree = "<group>"; };
+		32C0552A1C2A775D0072CE27 /* FriendRuns+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FriendRuns+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		32C0552B1C2A775D0072CE27 /* FriendRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRuns.swift; sourceTree = "<group>"; };
 		32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polyline.swift; sourceTree = "<group>"; };
 		32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32D7754B1BE1BE1C007DA0D9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -219,7 +225,10 @@
 		B05055471BBB98D000590577 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				3279AA4E1C269F04005AFA2C /* RunInfo+CoreDataProperties.swift */,
+				32C0552A1C2A775D0072CE27 /* FriendRuns+CoreDataProperties.swift */,
+				32C0552B1C2A775D0072CE27 /* FriendRuns.swift */,
+				32C055261C2A4CB10072CE27 /* NearbyRuns+CoreDataProperties.swift */,
+				32C055271C2A4CB10072CE27 /* NearbyRuns.swift */,
 				32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */,
 				32D7754B1BE1BE1C007DA0D9 /* User.swift */,
 				B037EEA61BC74C7900A48748 /* RunInfo.swift */,
@@ -292,6 +301,7 @@
 				TargetAttributes = {
 					B01F762B1B86EDA700048E53 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = J8AQ79KM78;
 					};
 					B01F76401B86EDA700048E53 = {
 						CreatedOnToolsVersion = 6.4;
@@ -393,6 +403,7 @@
 			files = (
 				326456301BF99C23007AB452 /* SignUpViewController.swift in Sources */,
 				B02FD2081B8EBD23003579FF /* GlobalVariables.swift in Sources */,
+				32C0552D1C2A775D0072CE27 /* FriendRuns.swift in Sources */,
 				B039DB2D1BC07FBD004D0DF2 /* Run.xcdatamodeld in Sources */,
 				B02FEE231B8C15160008E9A9 /* MapOverviewViewController.swift in Sources */,
 				B03A93DC1BC62DDF0057A978 /* MulticolorPolylineSegment.swift in Sources */,
@@ -402,8 +413,10 @@
 				320A80FC1C115A7A00B10F1C /* AddFriendViewController.swift in Sources */,
 				B019AD591B87A614004B1690 /* UserDatabase.swift in Sources */,
 				B01F76541B86FEAE00048E53 /* RouteHistoryViewController.swift in Sources */,
+				32C0552C1C2A775D0072CE27 /* FriendRuns+CoreDataProperties.swift in Sources */,
 				32D7754D1BE1BE1C007DA0D9 /* User.swift in Sources */,
 				B039DB311BC0BA7F004D0DF2 /* Location.swift in Sources */,
+				32C055291C2A4CB10072CE27 /* NearbyRuns.swift in Sources */,
 				B02A170B1BB3872E00D539F1 /* RouteTracker.swift in Sources */,
 				32D7754C1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift in Sources */,
 				B037EEA71BC74C7900A48748 /* RunInfo.swift in Sources */,
@@ -413,7 +426,7 @@
 				B037B97F1BAFA24300209D75 /* RouteGenerateNavigation.swift in Sources */,
 				32CF6A0B1C017B3B00DA3F89 /* Polyline.swift in Sources */,
 				B0504C781BA11B2500745B80 /* DirectionsViewController.swift in Sources */,
-				3279AA4F1C269F04005AFA2C /* RunInfo+CoreDataProperties.swift in Sources */,
+				32C055281C2A4CB10072CE27 /* NearbyRuns+CoreDataProperties.swift in Sources */,
 				B01F76321B86EDA700048E53 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -547,12 +560,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Run/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Run/Run-Bridging-Header.h";
@@ -567,12 +581,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Run/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Run/Run-Bridging-Header.h";
