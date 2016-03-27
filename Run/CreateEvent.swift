@@ -12,9 +12,10 @@ import UIKit
 
 class CreateEvent: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBAction func addButton(sender: UIButton) {
         //1
         let eventStore = EKEventStore()
         
@@ -40,7 +41,19 @@ class CreateEvent: UIViewController {
     }
     
     
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+
+    }
+    
+    
     func insertEvent(store: EKEventStore) {
+        
         //1
         let calendars = store.calendarsForEntityType(EKEntityType.Event)
         //as! [EKCalendar]
@@ -52,9 +65,9 @@ class CreateEvent: UIViewController {
             if calendar.title == "DeltaRun" {
                 calendarFound = true
                 //3
-                let startDate = NSDate()
+                let startDate = datePicker.date
                 //2 hours
-                let endDate = startDate.dateByAddingTimeInterval(2 * 60 * 60)
+                let endDate = startDate.dateByAddingTimeInterval(1 * 60 * 60)
                 
                 //4
                 //Create Event
@@ -92,6 +105,19 @@ class CreateEvent: UIViewController {
             print("In order to use this feature, create a calendar named DeltaRun")
         }
     }
+    
+    
+    
+    func datePickerChanged(datePicker:UIDatePicker) {
+        var dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        var strDate = dateFormatter.stringFromDate(datePicker.date)
+        dateLabel.text = strDate
+    }
+    
     
     
     override func didReceiveMemoryWarning() {
