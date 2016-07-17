@@ -11,6 +11,7 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     var returnBoolSign:Bool?
+    var Baseurl = Firebase(url: "https://blazing-torch-6156.firebaseio.com")
     
     
     @IBOutlet weak var dateTextField: UITextField!
@@ -88,7 +89,7 @@ class SignUpViewController: UIViewController {
 //            }
             
                         print(birthdate)
-                        let urlPath: String = "http://jeber.me/registeruser.php?name=" + "\(username!)" + "&password=" + "\(password!)" + "&email=" + "\(email!)" + "&firstname=" + "\(firstname!)" + "&lastname=" + "\(lastname!)" + "&birthdate=" + "\(birthdate!)"
+                        let urlPath: String = "http://abominable.science/registeruser.php?name=" + "\(username!)" + "&password=" + "\(password!)" + "&email=" + "\(email!)" + "&firstname=" + "\(firstname!)" + "&lastname=" + "\(lastname!)" + "&birthdate=" + "\(birthdate!)"
                         print(urlPath)
                         let url: NSURL = NSURL(string: urlPath)!
                         let request: NSURLRequest = NSURLRequest(URL: url)

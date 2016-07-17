@@ -138,8 +138,6 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
             error = error1
         }
         
-
-        
         let userRequest = NSFetchRequest(entityName: "User")
         var userInfoData:[User]
         userInfoData = (try! managedObjectContext.executeFetchRequest(userRequest)) as! [User]
@@ -147,38 +145,19 @@ class RouteTracker: UIViewController, CLLocationManagerDelegate {
         var loginUserId = currentUser.userid
         var Username = currentUser.username
         //print(base64String)
-//
-//        let urlPath: String = "http://abominable.science/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\(encodedPath)" + "&routeimage=" + "\"" + "\(base64String)" + "\"" + "&firstlatitude=" + "\(firstLatitude)" + "&firstlongitude=" + "\(firstLongitude)" + "&runby=" + "\(Username!)"
-//        print(urlPath)
-//        let url: NSURL = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
-//        let newRunRequest: NSURLRequest = NSURLRequest(URL: url)
-//        let connection: NSURLConnection = NSURLConnection(request: newRunRequest, delegate: self, startImmediately: true)!
-//        connection.start()
-        
-        let urlPost = NSURL(string: "http://www.jeber.me/newrun.php");
-        let requestPost = NSMutableURLRequest(URL:urlPost!)
-        requestPost.HTTPMethod = "POST";
-        
-        let postString = "name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\(encodedPath)" + "&routeimage=" + "\"" + "\(base64String)" + "\"" + "&firstlatitude=" + "\(firstLatitude)" + "&firstlongitude=" + "\(firstLongitude)" + "&runby=" + "\(Username!)";
-        requestPost.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
-        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        //
-        let session = NSURLSession.sharedSession();
-        let task = session.dataTaskWithRequest(requestPost, completionHandler: {data, response, error -> Void in
-            
-            let urlContent = NSString(data: data!, encoding: NSUTF8StringEncoding) as NSString!
-            print("Data: \(urlContent)");
-        });
-        
-        task.resume();
 
+        let urlPath: String = "http://abominable.science/newrun.php?name=" + "\(name)" + "&distance=" + "\(distance)" + "&duration=" + "\(seconds)" + "&daterun=" + "\(dateRun)" + "&useridkey=" + "\(loginUserId!)" + "&coordinates=" + "\(encodedPath)" + "&routeimage=" + "\"" + "\(base64String)" + "\"" + "&firstlatitude=" + "\(firstLatitude)" + "&firstlongitude=" + "\(firstLongitude)" + "&runby=" + "\(Username!)"
+        print(urlPath)
+        let url: NSURL = NSURL(string: urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
+        let newRunRequest: NSURLRequest = NSURLRequest(URL: url)
+        let connection: NSURLConnection = NSURLConnection(request: newRunRequest, delegate: self, startImmediately: true)!
+        connection.start()
         
         // replace | with ~ for polyline to coordinatess
         stopUpdatingLocation()
         
         RunInfoData = (try! managedObjectContext.executeFetchRequest(request)) as! [RunInfo]
-        mainInstance.routeNumber = RunInfoData.count - 1
+        mainInstance.routeNumber = RunInfoData.count
     }
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()

@@ -34,7 +34,7 @@ class UserLoginViewController:UIViewController {
         var usernameInput = UsernameField.text
         var password = PasswordField.text
         clearUsers()
-        var urlPath: String = "http://jeber.me/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
+        var urlPath: String = "http://abominable.science/login.php?name=" + "\(usernameInput!)" + "&password=" + "\(password!)"
         print(urlPath)
         if urlPath.rangeOfString(" ") == nil{
         var url: NSURL = NSURL(string: urlPath)!
@@ -130,7 +130,7 @@ class UserLoginViewController:UIViewController {
         var verificationId:String = verificationIdTemp2.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
         print(verificationId)
-        var runQuery:String = "http://jeber.me/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
+        var runQuery:String = "http://abominable.science/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
         var directionsURLString = NSURL(string: runQuery)
         print(directionsURLString!)
         let data = NSData(contentsOfURL: directionsURLString!)

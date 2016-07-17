@@ -85,7 +85,7 @@ class AddFriendViewController: UIViewController, UISearchBarDelegate, UISearchDi
             }
             else{
                 
-            var runQuery:String = "http://jeber.me/userquery.php?namequery=" + "\(searchText)"
+            var runQuery:String = "http://abominable.science/userquery.php?namequery=" + "\(searchText)"
             var directionsURLString = NSURL(string: runQuery)
                 if directionsURLString != nil {
             let data = NSData(contentsOfURL: directionsURLString!)
@@ -169,7 +169,7 @@ class AddFriendViewController: UIViewController, UISearchBarDelegate, UISearchDi
         var newAddedString = friendString! + "\(addedFriend)" + " "
         var newAddedWebString = newAddedString.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
 
-        let urlPath: String = "http://jeber.me/changefriend.php?friendstring=" + "\(newAddedWebString)" + "&userid=" + "\(userId!)" + "&verificationid=" + "\(verificationId!)"
+        let urlPath: String = "http://abominable.science/changefriend.php?friendstring=" + "\(newAddedWebString)" + "&userid=" + "\(userId!)" + "&verificationid=" + "\(verificationId!)"
         print(urlPath)
         let url: NSURL = NSURL(string: urlPath)!
         let request: NSURLRequest = NSURLRequest(URL: url)
@@ -223,7 +223,7 @@ class AddFriendViewController: UIViewController, UISearchBarDelegate, UISearchDi
         }
         var newRemovedWebString = newRemovedString.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
-        let urlPath: String = "http://jeber.me/changefriend.php?friendstring=" + "\(newRemovedWebString)" + "&userid=" + "\(userId!)" + "&verificationid=" + "\(verificationId!)"
+        let urlPath: String = "http://abominable.science/changefriend.php?friendstring=" + "\(newRemovedWebString)" + "&userid=" + "\(userId!)" + "&verificationid=" + "\(verificationId!)"
         print(urlPath)
         let url: NSURL = NSURL(string: urlPath)!
         let request: NSURLRequest = NSURLRequest(URL: url)
