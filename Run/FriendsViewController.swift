@@ -11,11 +11,16 @@ import UIKit
 import CoreData
 class FriendsViewController: UIViewController, UITableViewDelegate  {
   
+    @IBAction func UserInfoSegue(sender: AnyObject) {
+        var friendUserId = userIdArray[sender.tag]
+        mainInstance.friendId = friendUserId
+    }
     @IBOutlet weak var FriendsTableView: UITableView!
     var friendString:String?
+    var friendArray: [String] = []
+
     var userIdArray: [Int] = []
     var userNameArray: [String] = []
-    var friendArray: [String] = []
     var managedObjectContext:NSManagedObjectContext? = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     
     
@@ -29,16 +34,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate  {
         
             cell.NameLabel?.text = self.userNameArray[indexPath.row]
             print(cell.NameLabel?.text)
+        cell.InfoButton.tag = indexPath.row
+//        cell.InfoButton.addTarget(self, action: "buttonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
         
         let currentId = userIdArray[indexPath.row]
        
         return cell
     }
-
-    
-    override func viewDidLoad() {
-        FriendsTableView.delegate = self
-
+    func loadFriends() {
         
         let userRequest = NSFetchRequest(entityName: "User")
         var userInfoData = (try! managedObjectContext!.executeFetchRequest(userRequest)) as! [User]
@@ -47,12 +50,12 @@ class FriendsViewController: UIViewController, UITableViewDelegate  {
         friendString = currentUser.friends
         friendArray = friendString!.characters.split{$0 == " "}.map(String.init)
         var webFriendString = friendString!.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        var userIdQuery:String = "http://abominable.science/useridquery.php?userid=" + "\(webFriendString)"
+        var userIdQuery:String = "http://jeber.me/useridquery.php?userid=" + "\(webFriendString)"
         print(userIdQuery)
         var userURLString = NSURL(string: userIdQuery)
         if userURLString != nil {
             let data = NSData(contentsOfURL: userURLString!)
-      let dictionary: NSMutableArray = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSMutableArray
+            let dictionary: NSMutableArray = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSMutableArray
             print(dictionary)
             for user in dictionary{
                 let tempUserName = user["username"]! as! String
@@ -61,6 +64,27 @@ class FriendsViewController: UIViewController, UITableViewDelegate  {
                 self.userNameArray.append(tempUserName)
             }
         }
+    }
+    func clearArrays() {
+         friendString?.removeAll()
+         friendArray.removeAll()
+         userIdArray.removeAll()
+         userNameArray.removeAll()
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        print("friendappear")
+        print("\(userNameArray)")
+        clearArrays()
+        loadFriends()
+        self.FriendsTableView.reloadData()
+
+    }
+    override func viewDidLoad() {
+        FriendsTableView.delegate = self
+        clearArrays()
+        loadFriends()
+   
         
     }
 }

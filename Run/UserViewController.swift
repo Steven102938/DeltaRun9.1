@@ -17,11 +17,13 @@ class UserViewController: UIViewController{
     @IBOutlet weak var MilesRunLabel: UILabel!
     @IBOutlet weak var FriendButton: UIButton!
     @IBOutlet weak var FriendsLabel: UILabel!
+    @IBOutlet weak var CaloriesBurntLabel: UILabel!
     
     var managedObjectContext:NSManagedObjectContext? = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
 
     override func viewDidLoad() {
         loadUserData()
+        loadRunData()
           }
     
     func loadUserData() {
@@ -41,11 +43,15 @@ class UserViewController: UIViewController{
         let request = NSFetchRequest(entityName: "RunInfo")
         var runData = (try! managedObjectContext?.executeFetchRequest(request)) as! [RunInfo]
         var totalMilesRun:Double = 0.0
-        
+        print(runData)
             for run in runData{
             totalMilesRun += run.distance.doubleValue
                 
             }
         MilesRunLabel.text = "\(totalMilesRun)"
+        var caloriesBurnt = totalMilesRun * 100
+        CaloriesBurntLabel.text = "\(caloriesBurnt)"
     }
+    
+    
 }

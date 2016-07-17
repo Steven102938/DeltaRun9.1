@@ -74,7 +74,7 @@ class RouteHistory: UIViewController, UITableViewDelegate, CLLocationManagerDele
     var verificationId:String = verificationIdTemp2.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
 
         print(verificationId)
-        var runQuery:String = "http://abominable.science/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
+        var runQuery:String = "http://jeber.me/runquery.php?userid=" + "\(loginUserId!)" + "&verificationid=" + "\(verificationId)"
         var directionsURLString = NSURL(string: runQuery)
         print(directionsURLString!)
         let data = NSData(contentsOfURL: directionsURLString!)
@@ -180,9 +180,15 @@ class RouteHistory: UIViewController, UITableViewDelegate, CLLocationManagerDele
         RunInfoData = (try! managedObjectContext?.executeFetchRequest(request)) as! [RunInfo]
         let routeCount = RunInfoData.count
         return routeCount
-        }else{
+        }else if tableViewType == "NearbyRuns"{
          return self.nearbyRouteRunId.count
         }
+        else {
+            //friendrun
+            return self.friendRouteRunId.count
+        }
+
+        
     }
    
     
@@ -202,12 +208,12 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
             decodedImage = decodedImage.stringByReplacingOccurrencesOfString("\"", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
             decodedImage = decodedImage.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
 
-
+                print(decodedImage)
             let decodedData = NSData(base64EncodedString: decodedImage, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
             var decodedimage = UIImage(data: decodedData!)
             cell.mapPreview.image = decodedimage
             cell.DetailSegue.setTitle("Info", forState: .Normal )
-            cell.runByLabel.hidden = true
+//            cell.runByLabel.hidden = true
        
            cell.DetailSegue.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
         
@@ -227,7 +233,7 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
                 cell.mapPreview.image = decodedimage
                 cell.DetailSegue.setTitle("Info", forState: .Normal )
                 cell.DetailSegue.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-                cell.runByLabel.text = nearbyRunBy[indexPath.row]
+//                cell.runByLabel.text = nearbyRunBy[indexPath.row]
 
                 return cell
                 
@@ -253,7 +259,7 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
                 cell.mapPreview.image = decodedimage
                 cell.DetailSegue.setTitle("Info", forState: .Normal )
                 cell.DetailSegue.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-                cell.runByLabel.text = friendRunBy[indexPath.row]
+//                cell.runByLabel.text = friendRunBy[indexPath.row]
                 return cell
                 }
             }
@@ -284,7 +290,7 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
         var currentUser = userInfoData.removeLast()
         var friendString = currentUser.friends
         
-          var friendQuery:String = "http://abominable.science/friendrunquery.php?userid=" + "\(friendString)"
+          var friendQuery:String = "http://jeber.me/friendrunquery.php?userid=" + "\(friendString)"
         print(friendQuery)
         var friendQueryWeb = friendQuery.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
 
@@ -301,6 +307,7 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
             let tempRunId = run["runid"]!!.integerValue
             let tempImageData = run["routeimage"] as! String
             let tempRunBy = run["runby"] as! String
+            let tempUserId = run["useridkey"]!!.integerValue
             
             self.friendRunBy.append(tempRunBy)
             self.friendRouteImage.append(tempImageData)
@@ -323,6 +330,7 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
             FriendRun.friendpolyline = tempCoordinates
             FriendRun.friendrunid = tempRunId
             FriendRun.friendtimestamp = tempDaterun
+            FriendRun.friendid = tempUserId
             
             var error: NSError?
             let request = NSFetchRequest(entityName: "FriendRuns")
@@ -356,7 +364,7 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
         var originlatitude = loadCoordinates?.latitude
         var originlongitude = loadCoordinates?.longitude
     if nearbyRouteRunId.count <= 10 && searchRange <= 4{
-        var nearbyQuery:String = "http://abominable.science/nearbyquery.php?latituderangeone=" + "\(originlatitude! - arrayInt[searchRange])" + "&latituderangetwo=" + "\(originlatitude! + arrayInt[searchRange])" + "&longituderangeone=" + "\(originlongitude! - arrayInt[searchRange])" + "&longituderangetwo=" + "\(originlongitude! + arrayInt[searchRange])"
+        var nearbyQuery:String = "http://jeber.me/nearbyquery.php?latituderangeone=" + "\(originlatitude! - arrayInt[searchRange])" + "&latituderangetwo=" + "\(originlatitude! + arrayInt[searchRange])" + "&longituderangeone=" + "\(originlongitude! - arrayInt[searchRange])" + "&longituderangetwo=" + "\(originlongitude! + arrayInt[searchRange])"
         print(nearbyQuery)
         var directionsURLString = NSURL(string: nearbyQuery)
         print(directionsURLString!)
@@ -447,7 +455,7 @@ func pressed(sender: UIButton!) {
     let row = indexPath?.row
     
     print(row)
-    mainInstance.routeNumber = row! + 1
+    mainInstance.routeNumber = row!
     mainInstance.tableType = self.tableViewType
     self.performSegueWithIdentifier(RunInfoSegue, sender: nil)
 
@@ -460,7 +468,7 @@ func pressed(sender: UIButton!) {
 class mapCell:UITableViewCell {
     
    
-    @IBOutlet weak var runByLabel: UILabel!
+//    @IBOutlet weak var runByLabel: UILabel!
     @IBOutlet weak var mapPreview: UIImageView!
     @IBOutlet weak var routeName: UILabel!
     @IBOutlet weak var DetailSegue: UIButton!

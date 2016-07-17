@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15A284" minimumToolsVersion="Xcode 4.3">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15A284" minimumToolsVersion="Xcode 4.3">
     <entity name="FriendRuns" representedClassName="Run.FriendRuns" syncable="YES">
         <attribute name="frienddistance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="friendduration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="friendid" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="friendimage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friendname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friendpolyline" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,6 +27,16 @@
         <attribute name="nearbyrunid" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="nearbytimestamp" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Requests" representedClassName=".Requests" syncable="YES">
+        <attribute name="requestfrom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="requestfromid" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="requestid" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="requestimage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="requestmessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="requestname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="requestrundate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="requestrunid" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
     <entity name="RunInfo" representedClassName="Run.RunInfo" syncable="YES">
         <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -46,9 +57,10 @@
         <attribute name="verificationid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FriendRuns" positionX="-126" positionY="27" width="128" height="165"/>
+        <element name="FriendRuns" positionX="-126" positionY="27" width="128" height="180"/>
         <element name="Location" positionX="-36" positionY="9" width="128" height="105"/>
         <element name="NearbyRuns" positionX="-126" positionY="18" width="128" height="165"/>
+        <element name="Requests" positionX="-126" positionY="54" width="128" height="165"/>
         <element name="RunInfo" positionX="-218" positionY="-63" width="128" height="180"/>
         <element name="User" positionX="-126" positionY="9" width="128" height="135"/>
     </elements>

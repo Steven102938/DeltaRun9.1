@@ -28,13 +28,15 @@ class RouteInfo: UIViewController {
         loadMap()
     }
     func loadLabels() {
+        print(dataType)
+        print(mainInstance.routeNumber)
         if dataType == "RunInfo"{
             var error: NSError?
             let request = NSFetchRequest(entityName: dataType!)
             var RunInfoData = (try! managedObjectContext?.executeFetchRequest(request)) as! [RunInfo]
             let routeNumber = mainInstance.routeNumber
             
-            let currentdata = RunInfoData[routeNumber! - 1]
+            let currentdata = RunInfoData[routeNumber!]
             let distance = currentdata.distance as Double
             let seconds = currentdata.duration as Double
             print(currentdata)
@@ -55,6 +57,7 @@ class RouteInfo: UIViewController {
             else if secondsRunning >= 60{
                 timeLabel.text = "\(secondsRunning/60)" + "m" + "\(secondsRunning%60)" + "s"
             }
+            distanceLabel.text = "\(distance)"
         }
         if dataType == "NearbyRuns" {
             var error: NSError?
@@ -62,7 +65,7 @@ class RouteInfo: UIViewController {
             var RunInfoData:[NearbyRuns] = (try! managedObjectContext?.executeFetchRequest(request)) as! [NearbyRuns]
             let routeNumber = mainInstance.routeNumber
             
-            let currentdata:NearbyRuns = RunInfoData[routeNumber! - 1]
+            let currentdata:NearbyRuns = RunInfoData[routeNumber!]
 
             let distance = currentdata.nearbydistance as! Double
             let seconds = currentdata.nearbyduration as! Double
@@ -84,6 +87,8 @@ class RouteInfo: UIViewController {
             else if secondsRunning >= 60{
                 timeLabel.text = "\(secondsRunning/60)" + "m" + "\(secondsRunning%60)" + "s"
             }
+            distanceLabel.text = "\(distance)"
+
         }
         if dataType == "FriendRuns" {
             var error: NSError?
@@ -91,7 +96,7 @@ class RouteInfo: UIViewController {
             var RunInfoData = (try! managedObjectContext?.executeFetchRequest(request)) as! [FriendRuns]
             let routeNumber = mainInstance.routeNumber
             
-            let currentdata = RunInfoData[routeNumber! - 1]
+            let currentdata = RunInfoData[routeNumber!]
             let distance = currentdata.frienddistance as! Double
             let seconds = currentdata.friendduration as! Double
             print(currentdata)
@@ -112,6 +117,8 @@ class RouteInfo: UIViewController {
             else if secondsRunning >= 60{
                 timeLabel.text = "\(secondsRunning/60)" + "m" + "\(secondsRunning%60)" + "s"
             }
+            distanceLabel.text = "\(distance)"
+
         }
     }
     func loadMap() {
@@ -121,7 +128,7 @@ class RouteInfo: UIViewController {
         var RunInfoData = (try! managedObjectContext?.executeFetchRequest(request)) as! [RunInfo]
         var routeNumber = mainInstance.routeNumber
 
-        let previousRun = RunInfoData[routeNumber! - 1 ]
+        let previousRun = RunInfoData[routeNumber!]
         
         var path:GMSPath = GMSPath(fromEncodedPath: previousRun.polyline)
         var camera:GMSCoordinateBounds = GMSCoordinateBounds(path: path)
@@ -140,7 +147,7 @@ class RouteInfo: UIViewController {
             var RunInfoData = (try! managedObjectContext?.executeFetchRequest(request)) as! [NearbyRuns]
             var routeNumber = mainInstance.routeNumber
             
-            let previousRun = RunInfoData[routeNumber! - 1 ]
+            let previousRun = RunInfoData[routeNumber!]
             
             var path:GMSPath = GMSPath(fromEncodedPath: previousRun.nearbypolyline)
             var camera:GMSCoordinateBounds = GMSCoordinateBounds(path: path)
@@ -159,7 +166,7 @@ class RouteInfo: UIViewController {
             var RunInfoData = (try! managedObjectContext?.executeFetchRequest(request)) as! [FriendRuns]
             var routeNumber = mainInstance.routeNumber
             
-            let previousRun = RunInfoData[routeNumber! - 1 ]
+            let previousRun = RunInfoData[routeNumber!]
             
             var path:GMSPath = GMSPath(fromEncodedPath: previousRun.friendpolyline)
             var camera:GMSCoordinateBounds = GMSCoordinateBounds(path: path)

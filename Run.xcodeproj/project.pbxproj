@@ -9,22 +9,32 @@
 /* Begin PBXBuildFile section */
 		320A80FA1C11341D00B10F1C /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A80F91C11341D00B10F1C /* FriendsViewController.swift */; };
 		320A80FC1C115A7A00B10F1C /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320A80FB1C115A7A00B10F1C /* AddFriendViewController.swift */; };
+		324DD2171C5C9D8E004CC97E /* FriendInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324DD2161C5C9D8E004CC97E /* FriendInfoViewController.swift */; };
 		324EECA01BDCAE00000DA7D9 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */; };
+		325CE0661CB9E4420025B96C /* FriendForRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CE0651CB9E4420025B96C /* FriendForRequestViewController.swift */; };
 		326456301BF99C23007AB452 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3264562F1BF99C23007AB452 /* SignUpViewController.swift */; };
+		32B00F621CE05AA800484D96 /* RequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B00F611CE05AA800484D96 /* RequestsViewController.swift */; };
+		32BAD01E1CAE434000221996 /* RunForRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BAD01D1CAE434000221996 /* RunForRequestViewController.swift */; };
 		32C055281C2A4CB10072CE27 /* NearbyRuns+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C055261C2A4CB10072CE27 /* NearbyRuns+CoreDataProperties.swift */; };
 		32C055291C2A4CB10072CE27 /* NearbyRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C055271C2A4CB10072CE27 /* NearbyRuns.swift */; };
 		32C0552C1C2A775D0072CE27 /* FriendRuns+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0552A1C2A775D0072CE27 /* FriendRuns+CoreDataProperties.swift */; };
 		32C0552D1C2A775D0072CE27 /* FriendRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0552B1C2A775D0072CE27 /* FriendRuns.swift */; };
+		32CD30E51CE1745B0066C35D /* Requests+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CD30E31CE1745B0066C35D /* Requests+CoreDataProperties.swift */; };
+		32CD30E61CE1745B0066C35D /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CD30E41CE1745B0066C35D /* Requests.swift */; };
 		32CF6A0B1C017B3B00DA3F89 /* Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */; };
 		32D2F9911C378C0D00EDC603 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D2F9901C378C0D00EDC603 /* Main.storyboard */; };
 		32D7754C1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */; };
 		32D7754D1BE1BE1C007DA0D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7754B1BE1BE1C007DA0D9 /* User.swift */; };
+<<<<<<< Updated upstream
 		79B9965B1CA62B1C00BC36D3 /* Plans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9965A1CA62B1C00BC36D3 /* Plans.swift */; };
 		79B9965D1CA62DB600BC36D3 /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9965C1CA62DB600BC36D3 /* Inbox.swift */; };
 		79B996631CA77D3700BC36D3 /* PlanTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B996621CA77D3700BC36D3 /* PlanTableViewController.swift */; };
 		79B996651CA786E800BC36D3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B996641CA786E800BC36D3 /* Event.swift */; };
 		79B996671CA787A400BC36D3 /* SampleEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B996661CA787A400BC36D3 /* SampleEvents.swift */; };
 		79C95F661CA5E43A00AC845B /* CreateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C95F651CA5E43A00AC845B /* CreateEvent.swift */; };
+=======
+		32F1871C1CAB70B40077D599 /* RunRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1871B1CAB70B40077D599 /* RunRequestViewController.swift */; };
+>>>>>>> Stashed changes
 		B019AD591B87A614004B1690 /* UserDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019AD581B87A614004B1690 /* UserDatabase.swift */; };
 		B01F76321B86EDA700048E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F76311B86EDA700048E53 /* AppDelegate.swift */; };
 		B01F76341B86EDA700048E53 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F76331B86EDA700048E53 /* RunViewController.swift */; };
@@ -78,16 +88,23 @@
 		3209F61A1BF44CF800F7AF35 /* Run-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Run-Bridging-Header.h"; sourceTree = "<group>"; };
 		320A80F91C11341D00B10F1C /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		320A80FB1C115A7A00B10F1C /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		324DD2161C5C9D8E004CC97E /* FriendInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendInfoViewController.swift; sourceTree = "<group>"; };
 		324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
+		325CE0651CB9E4420025B96C /* FriendForRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendForRequestViewController.swift; sourceTree = "<group>"; };
 		3264562F1BF99C23007AB452 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		32B00F611CE05AA800484D96 /* RequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsViewController.swift; sourceTree = "<group>"; };
+		32BAD01D1CAE434000221996 /* RunForRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunForRequestViewController.swift; sourceTree = "<group>"; };
 		32C055261C2A4CB10072CE27 /* NearbyRuns+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NearbyRuns+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32C055271C2A4CB10072CE27 /* NearbyRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyRuns.swift; sourceTree = "<group>"; };
 		32C0552A1C2A775D0072CE27 /* FriendRuns+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FriendRuns+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32C0552B1C2A775D0072CE27 /* FriendRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRuns.swift; sourceTree = "<group>"; };
+		32CD30E31CE1745B0066C35D /* Requests+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Requests+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		32CD30E41CE1745B0066C35D /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polyline.swift; sourceTree = "<group>"; };
 		32D2F9901C378C0D00EDC603 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		32D7754A1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32D7754B1BE1BE1C007DA0D9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		32F1871B1CAB70B40077D599 /* RunRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunRequestViewController.swift; sourceTree = "<group>"; };
 		6835750FF00AFE0C7A499782 /* libPods-Run.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Run.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B9965A1CA62B1C00BC36D3 /* Plans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plans.swift; sourceTree = "<group>"; };
 		79B9965C1CA62DB600BC36D3 /* Inbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inbox.swift; sourceTree = "<group>"; };
@@ -155,6 +172,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+<<<<<<< Updated upstream
 		79B996681CA787AC00BC36D3 /* Events */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +184,30 @@
 				79B9965C1CA62DB600BC36D3 /* Inbox.swift */,
 			);
 			name = Events;
+=======
+		32F187191CAB49480077D599 /* RunTracker */ = {
+			isa = PBXGroup;
+			children = (
+				B02A170A1BB3872E00D539F1 /* RouteTracker.swift */,
+				B037B97E1BAFA24300209D75 /* RouteGenerateNavigation.swift */,
+				B01F76331B86EDA700048E53 /* RunViewController.swift */,
+				B046E17D1BB65AB000E58F83 /* RouteInfo.swift */,
+				B02FEE221B8C15160008E9A9 /* MapOverviewViewController.swift */,
+				B0504C771BA11B2500745B80 /* DirectionsViewController.swift */,
+			);
+			name = RunTracker;
+			sourceTree = "<group>";
+		};
+		32F1871A1CAB6F820077D599 /* RunRequest */ = {
+			isa = PBXGroup;
+			children = (
+				32F1871B1CAB70B40077D599 /* RunRequestViewController.swift */,
+				32BAD01D1CAE434000221996 /* RunForRequestViewController.swift */,
+				325CE0651CB9E4420025B96C /* FriendForRequestViewController.swift */,
+				32B00F611CE05AA800484D96 /* RequestsViewController.swift */,
+			);
+			name = RunRequest;
+>>>>>>> Stashed changes
 			sourceTree = "<group>";
 		};
 		B01F76231B86EDA700048E53 = {
@@ -193,26 +235,28 @@
 		B01F762E1B86EDA700048E53 /* Run */ = {
 			isa = PBXGroup;
 			children = (
+				32F1871A1CAB6F820077D599 /* RunRequest */,
+				32F187191CAB49480077D599 /* RunTracker */,
 				B05055471BBB98D000590577 /* CoreData */,
-				B034DF441BD5B97D000D4BFE /* UserViewController.swift */,
 				3264562F1BF99C23007AB452 /* SignUpViewController.swift */,
 				324EEC9F1BDCAE00000DA7D9 /* UserLoginViewController.swift */,
-				B037B97E1BAFA24300209D75 /* RouteGenerateNavigation.swift */,
-				B046E17D1BB65AB000E58F83 /* RouteInfo.swift */,
-				B02A170A1BB3872E00D539F1 /* RouteTracker.swift */,
+				B034DF441BD5B97D000D4BFE /* UserViewController.swift */,
+				324DD2161C5C9D8E004CC97E /* FriendInfoViewController.swift */,
 				B03A93DB1BC62DDF0057A978 /* MulticolorPolylineSegment.swift */,
-				B0504C771BA11B2500745B80 /* DirectionsViewController.swift */,
-				B01F76331B86EDA700048E53 /* RunViewController.swift */,
-				B02FEE221B8C15160008E9A9 /* MapOverviewViewController.swift */,
 				B019AD581B87A614004B1690 /* UserDatabase.swift */,
 				B01F76531B86FEAE00048E53 /* RouteHistoryViewController.swift */,
+				B01F76301B86EDA700048E53 /* Info.plist */,
 				B046E1811BB668C600E58F83 /* GraphView.swift */,
 				B01F76381B86EDA700048E53 /* Images.xcassets */,
 				32D2F9901C378C0D00EDC603 /* Main.storyboard */,
 				320A80FB1C115A7A00B10F1C /* AddFriendViewController.swift */,
 				320A80F91C11341D00B10F1C /* FriendsViewController.swift */,
 				B01F76311B86EDA700048E53 /* AppDelegate.swift */,
+<<<<<<< Updated upstream
 				79B996681CA787AC00BC36D3 /* Events */,
+=======
+				32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */,
+>>>>>>> Stashed changes
 				B039DB2B1BC07FBD004D0DF2 /* Run.xcdatamodeld */,
 				3209F61A1BF44CF800F7AF35 /* Run-Bridging-Header.h */,
 				B01F762F1B86EDA700048E53 /* Supporting Files */,
@@ -224,9 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				B02FD2071B8EBD23003579FF /* GlobalVariables.swift */,
-				32CF6A0A1C017B3B00DA3F89 /* Polyline.swift */,
 				B01F763A1B86EDA700048E53 /* LaunchScreen.xib */,
-				B01F76301B86EDA700048E53 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -251,6 +293,8 @@
 		B05055471BBB98D000590577 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				32CD30E31CE1745B0066C35D /* Requests+CoreDataProperties.swift */,
+				32CD30E41CE1745B0066C35D /* Requests.swift */,
 				32C0552A1C2A775D0072CE27 /* FriendRuns+CoreDataProperties.swift */,
 				32C0552B1C2A775D0072CE27 /* FriendRuns.swift */,
 				32C055261C2A4CB10072CE27 /* NearbyRuns+CoreDataProperties.swift */,
@@ -439,6 +483,7 @@
 				79B996651CA786E800BC36D3 /* Event.swift in Sources */,
 				320A80FA1C11341D00B10F1C /* FriendsViewController.swift in Sources */,
 				B034DF451BD5B97D000D4BFE /* UserViewController.swift in Sources */,
+				32CD30E61CE1745B0066C35D /* Requests.swift in Sources */,
 				320A80FC1C115A7A00B10F1C /* AddFriendViewController.swift in Sources */,
 				B019AD591B87A614004B1690 /* UserDatabase.swift in Sources */,
 				B01F76541B86FEAE00048E53 /* RouteHistoryViewController.swift in Sources */,
@@ -447,16 +492,25 @@
 				B039DB311BC0BA7F004D0DF2 /* Location.swift in Sources */,
 				32C055291C2A4CB10072CE27 /* NearbyRuns.swift in Sources */,
 				B02A170B1BB3872E00D539F1 /* RouteTracker.swift in Sources */,
+<<<<<<< Updated upstream
 				79B9965D1CA62DB600BC36D3 /* Inbox.swift in Sources */,
 				79B996631CA77D3700BC36D3 /* PlanTableViewController.swift in Sources */,
+=======
+				325CE0661CB9E4420025B96C /* FriendForRequestViewController.swift in Sources */,
+				32B00F621CE05AA800484D96 /* RequestsViewController.swift in Sources */,
+				32F1871C1CAB70B40077D599 /* RunRequestViewController.swift in Sources */,
+>>>>>>> Stashed changes
 				32D7754C1BE1BE1C007DA0D9 /* User+CoreDataProperties.swift in Sources */,
 				79B9965B1CA62B1C00BC36D3 /* Plans.swift in Sources */,
 				B037EEA71BC74C7900A48748 /* RunInfo.swift in Sources */,
+				32BAD01E1CAE434000221996 /* RunForRequestViewController.swift in Sources */,
 				B046E1821BB668C600E58F83 /* GraphView.swift in Sources */,
 				324EECA01BDCAE00000DA7D9 /* UserLoginViewController.swift in Sources */,
 				B046E17E1BB65AB000E58F83 /* RouteInfo.swift in Sources */,
+				32CD30E51CE1745B0066C35D /* Requests+CoreDataProperties.swift in Sources */,
 				B037B97F1BAFA24300209D75 /* RouteGenerateNavigation.swift in Sources */,
 				32CF6A0B1C017B3B00DA3F89 /* Polyline.swift in Sources */,
+				324DD2171C5C9D8E004CC97E /* FriendInfoViewController.swift in Sources */,
 				B0504C781BA11B2500745B80 /* DirectionsViewController.swift in Sources */,
 				32C055281C2A4CB10072CE27 /* NearbyRuns+CoreDataProperties.swift in Sources */,
 				B01F76321B86EDA700048E53 /* AppDelegate.swift in Sources */,
@@ -585,6 +639,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -593,6 +648,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Run/Run-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -606,6 +662,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -614,6 +671,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Run/Run-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
